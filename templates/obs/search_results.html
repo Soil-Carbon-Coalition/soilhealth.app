@@ -1,0 +1,12 @@
+{% extends '_base.html' %} {% block content %}
+<p>this is in the obs app templates</p>
+<h3>Search Results for</h3>
+<ul>
+  {% for el in object_list %}
+  <li>
+    {{ el }}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

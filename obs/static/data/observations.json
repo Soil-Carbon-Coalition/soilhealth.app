@@ -1,0 +1,2045 @@
+{
+    "count": 17,
+    "next": null,
+    "previous": null,
+    "page": 1,
+    "pages": 1,
+    "per_page": 50,
+    "multiple": false,
+    "parent_label": "R2R transect",
+    "parent_id": 49,
+    "parent_url": "observationtypes/49",
+    "parent_is_observationtype": true,
+    "parent_page": "observationtype",
+    "page_config": {
+        "url": "observations",
+        "list": true,
+        "form": [
+            {
+                "type": "string",
+                "label": "Parentobs",
+                "wq:ForeignKey": "observation",
+                "name": "parentobs"
+            },
+            {
+                "bind": {
+                    "required": true
+                },
+                "label": "Type",
+                "type": "string",
+                "wq:ForeignKey": "observationtype",
+                "name": "type"
+            },
+            {
+                "bind": {
+                    "required": true
+                },
+                "label": "Site",
+                "type": "string",
+                "wq:ForeignKey": "site",
+                "name": "site"
+            },
+            {
+                "type": "string",
+                "label": "Values",
+                "name": "values"
+            },
+            {
+                "type": "string",
+                "label": "Observer Id",
+                "name": "observer_id"
+            }
+        ],
+        "cache": "none",
+        "map": [
+            {
+                "mode": "list",
+                "autoLayers": true
+            },
+            {
+                "mode": "detail",
+                "autoLayers": true
+            }
+        ],
+        "label_template": "Observation{{#date}} on {{{date}}}{{/date}}",
+        "name": "observation"
+    },
+    "parent": {
+        "id": 49,
+        "icon": "forms/R2R.png",
+        "name": "R2R transect",
+        "description": "Transect observation for Rancher-to-Rancher project in California. See soilcarboncoalition.org/R2R.pdf",
+        "xlsform": "forms/R2Rtransect_FNxk16R.xls",
+        "form_json": {
+            "title": "R2Rtransect_FNxk16R",
+            "default_language": "default",
+            "type": "survey",
+            "sms_keyword": "R2Rtransect_FNxk16R",
+            "children": [
+                {
+                    "type": "note",
+                    "hint": "This form is for Rancher-to-rancher project transects. Download form at soilcarboncoalition.org/R2R.pdf. Upload scans and then CAPTIONED, REPEATABLE photos for your observations.",
+                    "type_info": {
+                        "bind": {
+                            "type": "string",
+                            "readonly": "true()"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "generated_note_name_2"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "date",
+                    "label": "date of observations",
+                    "type_info": {
+                        "bind": {
+                            "type": "date"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "date"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "text",
+                    "label": "observers",
+                    "hint": "observers in addition to logged-in user",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "observers"
+                },
+                {
+                    "type": "note",
+                    "hint": "Start with data forms including map, and caption or label each picture.",
+                    "type_info": {
+                        "bind": {
+                            "type": "string",
+                            "readonly": "true()"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "generated_note_name_5"
+                },
+                {
+                    "type": "photo",
+                    "label": "data form p. 1",
+                    "hint": "pls upload jpg scans",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "page1"
+                },
+                {
+                    "type": "photo",
+                    "label": "data form p. 2",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "page2"
+                },
+                {
+                    "type": "photo",
+                    "label": "data form p. 3",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "page3"
+                },
+                {
+                    "type": "note",
+                    "hint": "In uploading photos, start with linephotos, then hoop photos, vertical followed by angle, by hoop. For subsequent observations of R2R transects, each photo should correspond with prior photo.",
+                    "type_info": {
+                        "bind": {
+                            "type": "string",
+                            "readonly": "true()"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "generated_note_name_9"
+                },
+                {
+                    "type": "text",
+                    "label": "notes",
+                    "hint": "any observations or notes in addition to forms and photos. You may put link here to full pdf of site form.",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "description"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "photo",
+                    "label": "photo1",
+                    "hint": "start with line photos",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo1"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "text",
+                    "label": "caption1",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap1"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "photo",
+                    "label": "photo2",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo2"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "text",
+                    "label": "caption2",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap2"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "photo",
+                    "label": "photo3",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo3"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "text",
+                    "label": "caption3",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap3"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "photo",
+                    "label": "photo4",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo4"
+                },
+                {
+                    "bind": {
+                        "required": "yes"
+                    },
+                    "type": "text",
+                    "label": "caption4",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap4"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo5",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo5"
+                },
+                {
+                    "type": "text",
+                    "label": "caption5",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap5"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo6",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo6"
+                },
+                {
+                    "type": "text",
+                    "label": "caption6",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap6"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo7",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo7"
+                },
+                {
+                    "type": "text",
+                    "label": "caption7",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap7"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo8",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo8"
+                },
+                {
+                    "type": "text",
+                    "label": "caption8",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap8"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo9",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo9"
+                },
+                {
+                    "type": "text",
+                    "label": "caption9",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap9"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo10",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo10"
+                },
+                {
+                    "type": "text",
+                    "label": "caption10",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap10"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo11",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo11"
+                },
+                {
+                    "type": "text",
+                    "label": "caption11",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap11"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo12",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo12"
+                },
+                {
+                    "type": "text",
+                    "label": "caption12",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap12"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo13",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo13"
+                },
+                {
+                    "type": "text",
+                    "label": "caption13",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap13"
+                },
+                {
+                    "type": "photo",
+                    "label": "photo14",
+                    "type_info": {
+                        "bind": {
+                            "type": "binary"
+                        },
+                        "control": {
+                            "tag": "upload",
+                            "mediatype": "image/*"
+                        }
+                    },
+                    "name": "photo14"
+                },
+                {
+                    "type": "text",
+                    "label": "caption14",
+                    "hint": "If you have more photos to add, attach the Photo form to this observation.",
+                    "type_info": {
+                        "bind": {
+                            "type": "string"
+                        },
+                        "control": {
+                            "tag": "input"
+                        }
+                    },
+                    "name": "cap14"
+                }
+            ],
+            "id_string": "R2Rtransect_FNxk16R",
+            "name": "R2Rtransect_FNxk16R"
+        },
+        "script": "",
+        "edit_html": "<li data-xform-type='note'>\r\n  <p class=\"hint\">This form is for Rancher-to-rancher project transects. Download form at soilcarboncoalition.org/R2R.pdf. Upload scans and then CAPTIONED, REPEATABLE photos for your observations.</p>\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-date'>date of observations</label>\r\n  <input id='{{type_id}}-date' type='date' data-xform-type='date' name='date' required value=\"{{date}}\">\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-observers'>observers</label>\r\n  <textarea id='{{type_id}}-observers' name='observers' data-xform-type=\"text\" required>{{observers}}</textarea>\r\n  <p class=\"hint\">observers in addition to logged-in user</p>\r\n</li>\r\n<li data-xform-type='note'>\r\n  <p class=\"hint\">Start with data forms including map, and caption or label each picture.</p>\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-page1'>data form p. 1</label>\r\n  <input id='{{type_id}}-page1' type='file' data-xform-type='photo' name='page1' accept='image/*'>\r\n  <p class=\"hint\">pls upload jpg scans</p>\r\n  {{#page1}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#page1}}{{image_url}}{{/page1}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{page1}}\">\r\n    <input type=\"hidden\" name=\"page1\" value=\"{{page1}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/page1}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-page2'>data form p. 2</label>\r\n  <input id='{{type_id}}-page2' type='file' data-xform-type='photo' name='page2' accept='image/*'>\r\n  {{#page2}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#page2}}{{image_url}}{{/page2}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{page2}}\">\r\n    <input type=\"hidden\" name=\"page2\" value=\"{{page2}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/page2}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-page3'>data form p. 3</label>\r\n  <input id='{{type_id}}-page3' type='file' data-xform-type='photo' name='page3' accept='image/*'>\r\n  {{#page3}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#page3}}{{image_url}}{{/page3}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{page3}}\">\r\n    <input type=\"hidden\" name=\"page3\" value=\"{{page3}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/page3}}\r\n</li>\r\n<li data-xform-type='note'>\r\n  <p class=\"hint\">In uploading photos, start with linephotos, then hoop photos, vertical followed by angle, by hoop. For subsequent observations of R2R transects, each photo should correspond with prior photo.</p>\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-description'>notes</label>\r\n  <textarea id='{{type_id}}-description' name='description' data-xform-type=\"text\">{{description}}</textarea>\r\n  <p class=\"hint\">any observations or notes in addition to forms and photos. You may put link here to full pdf of site form.</p>\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo1'>photo1</label>\r\n  <input id='{{type_id}}-photo1' type='file' data-xform-type='photo' name='photo1'{{^photo1}} required{{/photo1}} accept='image/*'>\r\n  <p class=\"hint\">start with line photos</p>\r\n  {{#photo1}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo1}}{{image_url}}{{/photo1}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo1}}\">\r\n    <input type=\"hidden\" name=\"photo1\" value=\"{{photo1}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo1}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap1'>caption1</label>\r\n  <textarea id='{{type_id}}-cap1' name='cap1' data-xform-type=\"text\" required>{{cap1}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo2'>photo2</label>\r\n  <input id='{{type_id}}-photo2' type='file' data-xform-type='photo' name='photo2'{{^photo2}} required{{/photo2}} accept='image/*'>\r\n  {{#photo2}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo2}}{{image_url}}{{/photo2}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo2}}\">\r\n    <input type=\"hidden\" name=\"photo2\" value=\"{{photo2}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo2}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap2'>caption2</label>\r\n  <textarea id='{{type_id}}-cap2' name='cap2' data-xform-type=\"text\" required>{{cap2}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo3'>photo3</label>\r\n  <input id='{{type_id}}-photo3' type='file' data-xform-type='photo' name='photo3'{{^photo3}} required{{/photo3}} accept='image/*'>\r\n  {{#photo3}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo3}}{{image_url}}{{/photo3}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo3}}\">\r\n    <input type=\"hidden\" name=\"photo3\" value=\"{{photo3}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo3}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap3'>caption3</label>\r\n  <textarea id='{{type_id}}-cap3' name='cap3' data-xform-type=\"text\" required>{{cap3}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo4'>photo4</label>\r\n  <input id='{{type_id}}-photo4' type='file' data-xform-type='photo' name='photo4'{{^photo4}} required{{/photo4}} accept='image/*'>\r\n  {{#photo4}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo4}}{{image_url}}{{/photo4}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo4}}\">\r\n    <input type=\"hidden\" name=\"photo4\" value=\"{{photo4}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo4}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap4'>caption4</label>\r\n  <textarea id='{{type_id}}-cap4' name='cap4' data-xform-type=\"text\" required>{{cap4}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo5'>photo5</label>\r\n  <input id='{{type_id}}-photo5' type='file' data-xform-type='photo' name='photo5' accept='image/*'>\r\n  {{#photo5}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo5}}{{image_url}}{{/photo5}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo5}}\">\r\n    <input type=\"hidden\" name=\"photo5\" value=\"{{photo5}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo5}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap5'>caption5</label>\r\n  <textarea id='{{type_id}}-cap5' name='cap5' data-xform-type=\"text\">{{cap5}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo6'>photo6</label>\r\n  <input id='{{type_id}}-photo6' type='file' data-xform-type='photo' name='photo6' accept='image/*'>\r\n  {{#photo6}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo6}}{{image_url}}{{/photo6}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo6}}\">\r\n    <input type=\"hidden\" name=\"photo6\" value=\"{{photo6}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo6}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap6'>caption6</label>\r\n  <textarea id='{{type_id}}-cap6' name='cap6' data-xform-type=\"text\">{{cap6}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo7'>photo7</label>\r\n  <input id='{{type_id}}-photo7' type='file' data-xform-type='photo' name='photo7' accept='image/*'>\r\n  {{#photo7}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo7}}{{image_url}}{{/photo7}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo7}}\">\r\n    <input type=\"hidden\" name=\"photo7\" value=\"{{photo7}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo7}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap7'>caption7</label>\r\n  <textarea id='{{type_id}}-cap7' name='cap7' data-xform-type=\"text\">{{cap7}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo8'>photo8</label>\r\n  <input id='{{type_id}}-photo8' type='file' data-xform-type='photo' name='photo8' accept='image/*'>\r\n  {{#photo8}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo8}}{{image_url}}{{/photo8}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo8}}\">\r\n    <input type=\"hidden\" name=\"photo8\" value=\"{{photo8}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo8}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap8'>caption8</label>\r\n  <textarea id='{{type_id}}-cap8' name='cap8' data-xform-type=\"text\">{{cap8}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo9'>photo9</label>\r\n  <input id='{{type_id}}-photo9' type='file' data-xform-type='photo' name='photo9' accept='image/*'>\r\n  {{#photo9}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo9}}{{image_url}}{{/photo9}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo9}}\">\r\n    <input type=\"hidden\" name=\"photo9\" value=\"{{photo9}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo9}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap9'>caption9</label>\r\n  <textarea id='{{type_id}}-cap9' name='cap9' data-xform-type=\"text\">{{cap9}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo10'>photo10</label>\r\n  <input id='{{type_id}}-photo10' type='file' data-xform-type='photo' name='photo10' accept='image/*'>\r\n  {{#photo10}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo10}}{{image_url}}{{/photo10}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo10}}\">\r\n    <input type=\"hidden\" name=\"photo10\" value=\"{{photo10}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo10}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap10'>caption10</label>\r\n  <textarea id='{{type_id}}-cap10' name='cap10' data-xform-type=\"text\">{{cap10}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo11'>photo11</label>\r\n  <input id='{{type_id}}-photo11' type='file' data-xform-type='photo' name='photo11' accept='image/*'>\r\n  {{#photo11}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo11}}{{image_url}}{{/photo11}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo11}}\">\r\n    <input type=\"hidden\" name=\"photo11\" value=\"{{photo11}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo11}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap11'>caption11</label>\r\n  <textarea id='{{type_id}}-cap11' name='cap11' data-xform-type=\"text\">{{cap11}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo12'>photo12</label>\r\n  <input id='{{type_id}}-photo12' type='file' data-xform-type='photo' name='photo12' accept='image/*'>\r\n  {{#photo12}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo12}}{{image_url}}{{/photo12}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo12}}\">\r\n    <input type=\"hidden\" name=\"photo12\" value=\"{{photo12}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo12}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap12'>caption12</label>\r\n  <textarea id='{{type_id}}-cap12' name='cap12' data-xform-type=\"text\">{{cap12}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo13'>photo13</label>\r\n  <input id='{{type_id}}-photo13' type='file' data-xform-type='photo' name='photo13' accept='image/*'>\r\n  {{#photo13}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo13}}{{image_url}}{{/photo13}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo13}}\">\r\n    <input type=\"hidden\" name=\"photo13\" value=\"{{photo13}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo13}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap13'>caption13</label>\r\n  <textarea id='{{type_id}}-cap13' name='cap13' data-xform-type=\"text\">{{cap13}}</textarea>\r\n</li>\r\n<hr class=\"boldHR\">\r\n\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-photo14'>photo14</label>\r\n  <input id='{{type_id}}-photo14' type='file' data-xform-type='photo' name='photo14' accept='image/*'>\r\n  {{#photo14}}\r\n  <div class='ui-content'>\r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo14}}{{image_url}}{{/photo14}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <img src=\"{{svc}}/media/256/{{photo14}}\">\r\n    <input type=\"hidden\" name=\"photo14\" value=\"{{photo14}}\">\r\n    {{/outbox_id}}\r\n  </div>\r\n  {{/photo14}}\r\n</li>\r\n<li class=\"ui-field-contain\">\r\n  <label for='{{type_id}}-cap14'>caption14</label>\r\n  <textarea id='{{type_id}}-cap14' name='cap14' data-xform-type=\"text\">{{cap14}}</textarea>\r\n<p class=\"hint\">If you have more photos to add, attach the Photo form to this observation.</p>\r\n</li>",
+        "detail_html": "{{#generated_note_name_2}}\r\n<tr>\r\n  <th></th>\r\n  <td>\r\n    {{generated_note_name_2}}\r\n  </td>\r\n</tr>\r\n{{/generated_note_name_2}}\r\n{{#date}}\r\n<tr>\r\n  <th>date of observations</th>\r\n  <td>\r\n    {{date}}\r\n  </td>\r\n</tr>\r\n{{/date}}\r\n{{#observers}}\r\n<tr>\r\n  <th>observers</th>\r\n  <td>\r\n    {{observers}}\r\n  </td>\r\n</tr>\r\n{{/observers}}\r\n{{#generated_note_name_5}}\r\n<tr>\r\n  <th></th>\r\n  <td>\r\n    {{generated_note_name_5}}\r\n  </td>\r\n</tr>\r\n{{/generated_note_name_5}}\r\n{{#page1}}\r\n<tr>\r\n  <th>data form p. 1</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#page1}}{{image_url}}{{/page1}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{page1}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{page1}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/page1}}\r\n{{#page2}}\r\n<tr>\r\n  <th>data form p. 2</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#page2}}{{image_url}}{{/page2}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{page2}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{page2}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/page2}}\r\n{{#page3}}\r\n<tr>\r\n  <th>data form p. 3</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#page3}}{{image_url}}{{/page3}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{page3}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{page3}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/page3}}\r\n{{#generated_note_name_9}}\r\n<tr>\r\n  <th></th>\r\n  <td>\r\n    {{generated_note_name_9}}\r\n  </td>\r\n</tr>\r\n{{/generated_note_name_9}}\r\n{{#description}}\r\n<tr>\r\n  <th>notes</th>\r\n  <td>\r\n    {{description}}\r\n  </td>\r\n</tr>\r\n{{/description}}\r\n{{#photo1}}\r\n<tr>\r\n  <th>photo1</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo1}}{{image_url}}{{/photo1}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo1}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo1}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo1}}\r\n{{#cap1}}\r\n<tr>\r\n  <th>caption1</th>\r\n  <td>\r\n    {{cap1}}\r\n  </td>\r\n</tr>\r\n{{/cap1}}\r\n{{#photo2}}\r\n<tr>\r\n  <th>photo2</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo2}}{{image_url}}{{/photo2}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo2}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo2}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo2}}\r\n{{#cap2}}\r\n<tr>\r\n  <th>caption2</th>\r\n  <td>\r\n    {{cap2}}\r\n  </td>\r\n</tr>\r\n{{/cap2}}\r\n{{#photo3}}\r\n<tr>\r\n  <th>photo3</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo3}}{{image_url}}{{/photo3}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo3}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo3}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo3}}\r\n{{#cap3}}\r\n<tr>\r\n  <th>caption3</th>\r\n  <td>\r\n    {{cap3}}\r\n  </td>\r\n</tr>\r\n{{/cap3}}\r\n{{#photo4}}\r\n<tr>\r\n  <th>photo4</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo4}}{{image_url}}{{/photo4}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo4}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo4}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo4}}\r\n{{#cap4}}\r\n<tr>\r\n  <th>caption4</th>\r\n  <td>\r\n    {{cap4}}\r\n  </td>\r\n</tr>\r\n{{/cap4}}\r\n{{#photo5}}\r\n<tr>\r\n  <th>photo5</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo5}}{{image_url}}{{/photo5}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo5}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo5}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo5}}\r\n{{#cap5}}\r\n<tr>\r\n  <th>caption5</th>\r\n  <td>\r\n    {{cap5}}\r\n  </td>\r\n</tr>\r\n{{/cap5}}\r\n{{#photo6}}\r\n<tr>\r\n  <th>photo6</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo6}}{{image_url}}{{/photo6}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo6}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo6}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo6}}\r\n{{#cap6}}\r\n<tr>\r\n  <th>caption6</th>\r\n  <td>\r\n    {{cap6}}\r\n  </td>\r\n</tr>\r\n{{/cap6}}\r\n{{#photo7}}\r\n<tr>\r\n  <th>photo7</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo7}}{{image_url}}{{/photo7}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo7}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo7}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo7}}\r\n{{#cap7}}\r\n<tr>\r\n  <th>caption7</th>\r\n  <td>\r\n    {{cap7}}\r\n  </td>\r\n</tr>\r\n{{/cap7}}\r\n{{#photo8}}\r\n<tr>\r\n  <th>photo8</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo8}}{{image_url}}{{/photo8}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo8}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo8}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo8}}\r\n{{#cap8}}\r\n<tr>\r\n  <th>caption8</th>\r\n  <td>\r\n    {{cap8}}\r\n  </td>\r\n</tr>\r\n{{/cap8}}\r\n{{#photo9}}\r\n<tr>\r\n  <th>photo9</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo9}}{{image_url}}{{/photo9}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo9}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo9}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo9}}\r\n{{#cap9}}\r\n<tr>\r\n  <th>caption9</th>\r\n  <td>\r\n    {{cap9}}\r\n  </td>\r\n</tr>\r\n{{/cap9}}\r\n{{#photo10}}\r\n<tr>\r\n  <th>photo10</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo10}}{{image_url}}{{/photo10}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo10}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo10}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo10}}\r\n{{#cap10}}\r\n<tr>\r\n  <th>caption10</th>\r\n  <td>\r\n    {{cap10}}\r\n  </td>\r\n</tr>\r\n{{/cap10}}\r\n{{#photo11}}\r\n<tr>\r\n  <th>photo11</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo11}}{{image_url}}{{/photo11}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo11}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo11}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo11}}\r\n{{#cap11}}\r\n<tr>\r\n  <th>caption11</th>\r\n  <td>\r\n    {{cap11}}\r\n  </td>\r\n</tr>\r\n{{/cap11}}\r\n{{#photo12}}\r\n<tr>\r\n  <th>photo12</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo12}}{{image_url}}{{/photo12}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo12}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo12}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo12}}\r\n{{#cap12}}\r\n<tr>\r\n  <th>caption12</th>\r\n  <td>\r\n    {{cap12}}\r\n  </td>\r\n</tr>\r\n{{/cap12}}\r\n{{#photo13}}\r\n<tr>\r\n  <th>photo13</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo13}}{{image_url}}{{/photo13}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo13}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo13}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo13}}\r\n{{#cap13}}\r\n<tr>\r\n  <th>caption13</th>\r\n  <td>\r\n    {{cap13}}\r\n  </td>\r\n</tr>\r\n{{/cap13}}\r\n{{#photo14}}\r\n<tr>\r\n  <th>photo14</th>\r\n  <td>\r\n    \r\n    {{#outbox_id}}\r\n    <img src=\"{{#photo14}}{{image_url}}{{/photo14}}\" style='height:256px;'>\r\n    {{/outbox_id}}\r\n    {{^outbox_id}}\r\n    <a href=\"{{rt}}/media/{{photo14}}\" target = \"_blank\"><img src=\"{{svc}}/media/256/{{photo14}}\"></a>\r\n    {{/outbox_id}}\r\n  </td>\r\n</tr>\r\n{{/photo14}}\r\n{{#cap14}}\r\n<tr>\r\n  <th>caption14</th>\r\n  <td>\r\n    {{cap14}}\r\n  </td>\r\n</tr>\r\n{{/cap14}}",
+        "author": {
+            "last_login": "2019-06-14T00:32:19.740461Z",
+            "is_superuser": true,
+            "username": "Peter_Donovan",
+            "first_name": "",
+            "last_name": "",
+            "email": "managingwholes.com@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2017-04-27T12:08:48.572654Z",
+            "label": "Peter_Donovan",
+            "date_joined_label": "2017-04-27 12:08 PM",
+            "last_login_label": "2019-06-14 12:32 AM"
+        },
+        "label": "R2R transect",
+        "author_label": "Peter_Donovan"
+    },
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": 7853,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -123.33517,
+                    39.46771
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2019-06-14T00:53:53.433477Z",
+                "site_id": 1016,
+                "childobs": [
+                    {
+                        "id": 7857,
+                        "observer_id": 1,
+                        "parentobs_id": 7853,
+                        "type_id": 16,
+                        "entered": "2019-06-14T01:04:19.623931Z",
+                        "site_id": 1016,
+                        "values": {
+                            "photo": "observations/LLRA12015Hoop5Angle.JPG",
+                            "photodescription": "LLRA1 Hoop 5 angle",
+                            "date": "2015-04-30"
+                        },
+                        "parentobs_label": "7853: R2R transect",
+                        "type_label": "Photo",
+                        "label": "7857: Photo",
+                        "site_label": "LittleLakeR2R",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2019-06-14 01:04 AM"
+                    },
+                    {
+                        "id": 7856,
+                        "observer_id": 1,
+                        "parentobs_id": 7853,
+                        "type_id": 16,
+                        "entered": "2019-06-14T01:02:33.169268Z",
+                        "site_id": 1016,
+                        "values": {
+                            "photo": "observations/LLRA12015Hoop5SD.JPG",
+                            "photodescription": "LLRA1 hoop 5",
+                            "date": "2015-04-30"
+                        },
+                        "parentobs_label": "7853: R2R transect",
+                        "type_label": "Photo",
+                        "label": "7856: Photo",
+                        "site_label": "LittleLakeR2R",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2019-06-14 01:02 AM"
+                    },
+                    {
+                        "id": 7855,
+                        "observer_id": 1,
+                        "parentobs_id": 7853,
+                        "type_id": 16,
+                        "entered": "2019-06-14T00:58:53.273222Z",
+                        "site_id": 1016,
+                        "values": {
+                            "photo": "observations/LLRA12015Hoop4Angle.JPG",
+                            "photodescription": "LLRA1 Hoop 4, angle",
+                            "date": "2015-04-30"
+                        },
+                        "parentobs_label": "7853: R2R transect",
+                        "type_label": "Photo",
+                        "label": "7855: Photo",
+                        "site_label": "LittleLakeR2R",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2019-06-14 12:58 AM"
+                    },
+                    {
+                        "id": 7854,
+                        "observer_id": 1,
+                        "parentobs_id": 7853,
+                        "type_id": 16,
+                        "entered": "2019-06-14T00:57:26.267705Z",
+                        "site_id": 1016,
+                        "values": {
+                            "photo": "observations/LLRA12015Hoop4SD.JPG",
+                            "photodescription": "LLRA1 Hoop4",
+                            "date": "2015-04-30"
+                        },
+                        "parentobs_label": "7853: R2R transect",
+                        "type_label": "Photo",
+                        "label": "7854: Photo",
+                        "site_label": "LittleLakeR2R",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2019-06-14 12:57 AM"
+                    }
+                ],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7853: R2R transect",
+                "site_label": "LittleLakeR2R",
+                "observer_label": "Peter_Donovan",
+                "entered_label": "2019-06-14 12:53 AM",
+                "cap3": "LLRA2 hoop 1",
+                "cap5": "LLRA2, hoop 2",
+                "cap14": "LLRA2 hoop 3, angle",
+                "photo9": "observations/LLRA12015Hoop1SD.JPG",
+                "page1": "observations/LLRA1-2map.jpg",
+                "cap8": "LLRA2 hoop 3, angle",
+                "cap1": "from 100' NE",
+                "photo8": "observations/LLRA2-2015Hoop3Angle.JPG",
+                "photo4": "observations/LLRA2-2015Hoop1Angle.JPG",
+                "cap10": "LLRA, hoop 1 angle",
+                "page3": "observations/LLRA1-2015-Page2.jpg",
+                "photo5": "observations/LLRA2-2015Hoop2SD.JPG",
+                "cap9": "LLRA1, hoop 1",
+                "photo7": "observations/LLRA2-2015Hoop3SD.JPG",
+                "description": null,
+                "cap4": "LLRA2 hoop 1, angle",
+                "observers": "Kent Reeves, Richard King",
+                "cap7": "LLRA2 hoop 3",
+                "cap11": "LLRA2 hoop 2",
+                "cap6": "LLRA2 hoop 2 angle",
+                "cap12": "LLRA2 hoop 2, angle",
+                "photo12": "observations/LLRA12015Hoop2Angle.JPG",
+                "photo14": "observations/LLRA12015Hoop3Angle.JPG",
+                "photo13": "observations/LLRA12015Hoop3SD.JPG",
+                "cap2": "from 100' SW",
+                "cap13": "LLRA2 hoop 3",
+                "photo3": "observations/LLRA2-2015Hoop1SD.JPG",
+                "photo11": "observations/LLRA12015Hoop2SD.JPG",
+                "page2": "observations/LLRA1-2015-Page1.jpg",
+                "photo6": "observations/LLRA2-2015Hoop2Angle.JPG",
+                "photo1": "observations/LLRA 2015 Transect NE 100'.JPG",
+                "photo2": "observations/LLRA 2015 Transect SW 100'.JPG",
+                "date": "2015-04-30",
+                "photo10": "observations/LLRA12015Hoop1Angle.JPG"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7840,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -119.592666,
+                    36.998689
+                ]
+            },
+            "properties": {
+                "parentobs_id": 7750,
+                "type_id": 49,
+                "entered": "2019-05-14T13:38:51.207465Z",
+                "site_id": 992,
+                "childobs": [],
+                "parentobs_label": "7750: R2R transect",
+                "type_label": "R2R transect",
+                "label": "7840: R2R transect",
+                "site_label": "McKenzie01",
+                "observer_label": "Peter_Donovan",
+                "entered_label": "2019-05-14 01:38 PM",
+                "cap3": "Hoop at 20'",
+                "cap5": null,
+                "cap14": null,
+                "photo9": "observations/KIMG0114.JPG",
+                "page1": "observations/MK01p1.JPG",
+                "cap8": "60' hoop now in creek",
+                "cap1": "line photo from 100' toward 0",
+                "photo8": "observations/KIMG0114_i1sfKZL.JPG",
+                "photo4": "observations/KIMG0111.JPG",
+                "cap10": "80' hoop now in creek",
+                "page3": "observations/MK01p3.JPG",
+                "cap9": "60' hoop now in creek",
+                "photo7": "observations/KIMG0113.JPG",
+                "description": "Monitoring done collectively as part of R2R day with 40 participants",
+                "cap4": "Hoop at 20', angle photo",
+                "observers": "Kent Reeves, Richard King, Billy Freeman",
+                "cap7": "hoop at 40' angle photo",
+                "cap11": "hoop at 80' angle photo",
+                "cap6": "hoop at 40'",
+                "cap12": "hoop at 100'",
+                "photo12": "observations/KIMG0117.JPG",
+                "photo13": "observations/KIMG0118.JPG",
+                "cap2": "line photo from 0 toward 100'",
+                "cap13": "Hoop at 100', angle photo",
+                "photo3": "observations/KIMG0110.JPG",
+                "photo11": "observations/KIMG0116.JPG",
+                "page2": "observations/MK01p2.JPG",
+                "photo6": "observations/KIMG0112.JPG",
+                "photo1": "observations/KIMG0119.JPG",
+                "photo2": "observations/KIMG0120.JPG",
+                "date": "2019-03-19",
+                "photo10": "observations/KIMG0115.JPG"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7751,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -119.591171,
+                    37.00147
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2019-04-12T17:31:56.655178Z",
+                "site_id": 991,
+                "childobs": [],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7751: R2R transect",
+                "site_label": "McKenzie02",
+                "observer_label": "KentReeves",
+                "entered_label": "2019-04-12 05:31 PM",
+                "cap3": "Hoop 1 Vertical 15'",
+                "cap5": "Hoop 2 Vertical 25'",
+                "cap14": null,
+                "photo9": "observations/SFC McK 2 100' Straight 02022017.jpg",
+                "page1": "observations/R2R Monitoring Feb 2017 #2.PDF",
+                "cap8": "Hoop 3 Angle 90'",
+                "cap1": "NE Midpoint 50' View",
+                "photo8": "observations/SFC McK 2 90' 02022017.jpg",
+                "photo4": "observations/SFC McK 2 15' 02022017.jpg",
+                "cap10": "Hoop 4 Angle No Horizon 100'",
+                "page3": "observations/R2R Monitoring Feb 2017 #2.PDF",
+                "photo5": "observations/SFC McK 2 25' Straight 02022017.jpg",
+                "cap9": "Hoop 4 Vertical 100'",
+                "photo7": "observations/SFC McK 2 90' Straight 02022017.jpg",
+                "description": "Pages 1 - 3 are in one PDF file.  ",
+                "cap4": "Hoop 1 Angle No Horizon 15'",
+                "observers": "Billy Freeman",
+                "cap7": "Hoop 3 Vertical 90'",
+                "cap11": null,
+                "cap6": "Hoop 2 Angle No Horizon 25' ",
+                "cap12": null,
+                "cap2": "SW Midpoint 50' View",
+                "cap13": null,
+                "photo3": "observations/SFC McK 2 15' Straight 02022017.jpg",
+                "page2": "observations/R2R Monitoring Feb 2017 #2_uw18hne.PDF",
+                "photo6": "observations/SFC McK 2 25' 02022017.jpg",
+                "photo1": "observations/SFC McK 2 50' ViewBack 02022017.jpg",
+                "photo2": "observations/SFC McK 2 50' View 02022017.jpg",
+                "date": "2017-02-02",
+                "photo10": "observations/SFC McK 2 Angle 100' 02022017.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7750,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -119.592666,
+                    36.998689
+                ]
+            },
+            "properties": {
+                "parentobs_id": 7748,
+                "type_id": 49,
+                "entered": "2019-04-12T17:03:22.408294Z",
+                "site_id": 992,
+                "childobs": [
+                    {
+                        "id": 7840,
+                        "observer_id": 1,
+                        "parentobs_id": 7750,
+                        "type_id": 49,
+                        "entered": "2019-05-14T13:38:51.207465Z",
+                        "site_id": 992,
+                        "values": {
+                            "cap3": "Hoop at 20'",
+                            "cap5": null,
+                            "cap14": null,
+                            "photo9": "observations/KIMG0114.JPG",
+                            "page1": "observations/MK01p1.JPG",
+                            "cap8": "60' hoop now in creek",
+                            "cap1": "line photo from 100' toward 0",
+                            "photo8": "observations/KIMG0114_i1sfKZL.JPG",
+                            "photo4": "observations/KIMG0111.JPG",
+                            "cap10": "80' hoop now in creek",
+                            "page3": "observations/MK01p3.JPG",
+                            "cap9": "60' hoop now in creek",
+                            "photo7": "observations/KIMG0113.JPG",
+                            "description": "Monitoring done collectively as part of R2R day with 40 participants",
+                            "cap4": "Hoop at 20', angle photo",
+                            "observers": "Kent Reeves, Richard King, Billy Freeman",
+                            "cap7": "hoop at 40' angle photo",
+                            "cap11": "hoop at 80' angle photo",
+                            "cap6": "hoop at 40'",
+                            "cap12": "hoop at 100'",
+                            "photo12": "observations/KIMG0117.JPG",
+                            "photo13": "observations/KIMG0118.JPG",
+                            "cap2": "line photo from 0 toward 100'",
+                            "cap13": "Hoop at 100', angle photo",
+                            "photo3": "observations/KIMG0110.JPG",
+                            "photo11": "observations/KIMG0116.JPG",
+                            "page2": "observations/MK01p2.JPG",
+                            "photo6": "observations/KIMG0112.JPG",
+                            "photo1": "observations/KIMG0119.JPG",
+                            "photo2": "observations/KIMG0120.JPG",
+                            "date": "2019-03-19",
+                            "photo10": "observations/KIMG0115.JPG"
+                        },
+                        "parentobs_label": "7750: R2R transect",
+                        "type_label": "R2R transect",
+                        "label": "7840: R2R transect",
+                        "site_label": "McKenzie01",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2019-05-14 01:38 PM"
+                    }
+                ],
+                "parentobs_label": "7748: R2R transect",
+                "type_label": "R2R transect",
+                "label": "7750: R2R transect",
+                "site_label": "McKenzie01",
+                "observer_label": "KentReeves",
+                "entered_label": "2019-04-12 05:03 PM",
+                "cap3": "Hoop 1 Vertical 20'",
+                "cap5": "Recalibrated Points for 2018 and 2019 because of loss of points 40 and 60.",
+                "cap14": null,
+                "photo9": "observations/SFC McK 1 100' Straight 02022017.jpg",
+                "page1": "observations/R2R Monitoring Feb 2017 #1_xYBT4cX.PDF",
+                "cap8": "Hoop 4 Angle No Horizon 80'",
+                "cap1": "NE View from 100' Endpoint",
+                "photo8": "observations/SFC McK 1 80' 02022017.jpg",
+                "photo4": "observations/SFC McK 1 20' 02022017.jpg",
+                "cap10": "Hoop 5 Angle No Horizon 100'",
+                "page3": "observations/R2R Monitoring Feb 2017 #1.PDF",
+                "photo5": "observations/SFC McK 1 40' 60' Monitoring points gone 02022017_UDua8dr.jpg",
+                "cap9": "Hoop 5 Vertical 100'",
+                "photo7": "observations/SFC McK 1 80' Straight 02022017.jpg",
+                "description": "All three pages for McKenzie Preserve are in one PDF. ",
+                "cap4": "Hoop 1 Angle No Horizon 20'",
+                "observers": "Billy Freeman",
+                "cap7": "Hoop 4 Vertical 80'",
+                "cap11": null,
+                "cap6": "Recalibrated Points for 2018 and 2019 because of loss of points 40 and 60.",
+                "cap12": null,
+                "cap2": "SW View from 0' Startpoint",
+                "cap13": null,
+                "photo3": "observations/SFC McK 1 20' Straight 02022017.jpg",
+                "page2": "observations/R2R Monitoring Feb 2017 #1_m6qR3hq.PDF",
+                "photo6": "observations/SFC McK 1 40' 60' Monitoring points gone 02022017.jpg",
+                "photo1": "observations/20170202_095615.jpg",
+                "photo2": "observations/SFC McK 1 Start Point 02022017.jpg",
+                "date": "2017-02-02",
+                "photo10": "observations/SFC McK 1 100' 02022017.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7748,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -119.592666,
+                    36.998689
+                ]
+            },
+            "properties": {
+                "parentobs_id": 7747,
+                "type_id": 49,
+                "entered": "2019-04-12T16:24:49.165250Z",
+                "site_id": 992,
+                "childobs": [
+                    {
+                        "id": 7750,
+                        "observer_id": 25,
+                        "parentobs_id": 7748,
+                        "type_id": 49,
+                        "entered": "2019-04-12T17:03:22.408294Z",
+                        "site_id": 992,
+                        "values": {
+                            "cap3": "Hoop 1 Vertical 20'",
+                            "cap5": "Recalibrated Points for 2018 and 2019 because of loss of points 40 and 60.",
+                            "cap14": null,
+                            "photo9": "observations/SFC McK 1 100' Straight 02022017.jpg",
+                            "page1": "observations/R2R Monitoring Feb 2017 #1_xYBT4cX.PDF",
+                            "cap8": "Hoop 4 Angle No Horizon 80'",
+                            "cap1": "NE View from 100' Endpoint",
+                            "photo8": "observations/SFC McK 1 80' 02022017.jpg",
+                            "photo4": "observations/SFC McK 1 20' 02022017.jpg",
+                            "cap10": "Hoop 5 Angle No Horizon 100'",
+                            "page3": "observations/R2R Monitoring Feb 2017 #1.PDF",
+                            "photo5": "observations/SFC McK 1 40' 60' Monitoring points gone 02022017_UDua8dr.jpg",
+                            "cap9": "Hoop 5 Vertical 100'",
+                            "photo7": "observations/SFC McK 1 80' Straight 02022017.jpg",
+                            "description": "All three pages for McKenzie Preserve are in one PDF. ",
+                            "cap4": "Hoop 1 Angle No Horizon 20'",
+                            "observers": "Billy Freeman",
+                            "cap7": "Hoop 4 Vertical 80'",
+                            "cap11": null,
+                            "cap6": "Recalibrated Points for 2018 and 2019 because of loss of points 40 and 60.",
+                            "cap12": null,
+                            "cap2": "SW View from 0' Startpoint",
+                            "cap13": null,
+                            "photo3": "observations/SFC McK 1 20' Straight 02022017.jpg",
+                            "page2": "observations/R2R Monitoring Feb 2017 #1_m6qR3hq.PDF",
+                            "photo6": "observations/SFC McK 1 40' 60' Monitoring points gone 02022017.jpg",
+                            "photo1": "observations/20170202_095615.jpg",
+                            "photo2": "observations/SFC McK 1 Start Point 02022017.jpg",
+                            "date": "2017-02-02",
+                            "photo10": "observations/SFC McK 1 100' 02022017.jpg"
+                        },
+                        "parentobs_label": "7748: R2R transect",
+                        "type_label": "R2R transect",
+                        "label": "7750: R2R transect",
+                        "site_label": "McKenzie01",
+                        "observer_label": "KentReeves",
+                        "entered_label": "2019-04-12 05:03 PM"
+                    }
+                ],
+                "parentobs_label": "7747: R2R transect",
+                "type_label": "R2R transect",
+                "label": "7748: R2R transect",
+                "site_label": "McKenzie01",
+                "observer_label": "KentReeves",
+                "entered_label": "2019-04-12 04:24 PM",
+                "cap3": "Hoop 1 Vertical 20'",
+                "cap5": "Hoop 2 Vertical 40'",
+                "cap14": null,
+                "photo9": "observations/SFC2_2016_Hoop4_SD.jpg",
+                "page1": "observations/09012015 SFC McKP Page 1_Q7xBRg0.jpg",
+                "cap8": "Hoop 3 Angle No Horizon 60'",
+                "cap1": "NE View from 100' Endpoint",
+                "photo8": "observations/SFC2_2016_Hoop3_Angle.jpg",
+                "photo4": "observations/SFC2_2016_Hoop1_Angle.jpg",
+                "cap10": "Hoop 4 Angle No Horizon 80'",
+                "page3": "observations/2016 Data Sheet pg 2.jpg",
+                "photo5": "observations/SFC2_2016_Hoop2_SD.jpg",
+                "cap9": "Hoop 4 Vertical 80'",
+                "photo7": "observations/SFC2_2016_Hoop3_SD.jpg",
+                "description": "Page 1 is the original page 1 from 2015",
+                "cap4": "Hoop 1 Angle No Horizon 20'",
+                "observers": "Billy Freeman",
+                "cap7": "Hoop 3 Vertical 60'",
+                "cap11": "Hoop 5 Vertical 100'",
+                "cap6": "Hoop 2 Angle No Horizon 40'",
+                "cap12": "Hoop 5 Angle No Horizon 100'",
+                "photo12": "observations/SFC2_2016_Hoop5_Angle.jpg",
+                "cap2": "SW View from 0' Startpoint",
+                "cap13": null,
+                "photo3": "observations/SFC2_2016_Hoop1_SD.jpg",
+                "photo11": "observations/SFC2_2016_Hoop5_SD.jpg",
+                "page2": "observations/2016 Data Sheet pg 1.jpg",
+                "photo6": "observations/SFC2_2016_Hoop2_Angle.jpg",
+                "photo1": "observations/IMAG0110.jpg",
+                "photo2": "observations/SFC2_McKenzie_2016_SW_View.jpg",
+                "date": "2016-01-26",
+                "photo10": "observations/SFC2_2016_Hoop4_Angle.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7747,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -119.592666,
+                    36.998689
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2019-04-12T15:40:03.426013Z",
+                "site_id": 992,
+                "childobs": [
+                    {
+                        "id": 7748,
+                        "observer_id": 25,
+                        "parentobs_id": 7747,
+                        "type_id": 49,
+                        "entered": "2019-04-12T16:24:49.165250Z",
+                        "site_id": 992,
+                        "values": {
+                            "cap3": "Hoop 1 Vertical 20'",
+                            "cap5": "Hoop 2 Vertical 40'",
+                            "cap14": null,
+                            "photo9": "observations/SFC2_2016_Hoop4_SD.jpg",
+                            "page1": "observations/09012015 SFC McKP Page 1_Q7xBRg0.jpg",
+                            "cap8": "Hoop 3 Angle No Horizon 60'",
+                            "cap1": "NE View from 100' Endpoint",
+                            "photo8": "observations/SFC2_2016_Hoop3_Angle.jpg",
+                            "photo4": "observations/SFC2_2016_Hoop1_Angle.jpg",
+                            "cap10": "Hoop 4 Angle No Horizon 80'",
+                            "page3": "observations/2016 Data Sheet pg 2.jpg",
+                            "photo5": "observations/SFC2_2016_Hoop2_SD.jpg",
+                            "cap9": "Hoop 4 Vertical 80'",
+                            "photo7": "observations/SFC2_2016_Hoop3_SD.jpg",
+                            "description": "Page 1 is the original page 1 from 2015",
+                            "cap4": "Hoop 1 Angle No Horizon 20'",
+                            "observers": "Billy Freeman",
+                            "cap7": "Hoop 3 Vertical 60'",
+                            "cap11": "Hoop 5 Vertical 100'",
+                            "cap6": "Hoop 2 Angle No Horizon 40'",
+                            "cap12": "Hoop 5 Angle No Horizon 100'",
+                            "photo12": "observations/SFC2_2016_Hoop5_Angle.jpg",
+                            "cap2": "SW View from 0' Startpoint",
+                            "cap13": null,
+                            "photo3": "observations/SFC2_2016_Hoop1_SD.jpg",
+                            "photo11": "observations/SFC2_2016_Hoop5_SD.jpg",
+                            "page2": "observations/2016 Data Sheet pg 1.jpg",
+                            "photo6": "observations/SFC2_2016_Hoop2_Angle.jpg",
+                            "photo1": "observations/IMAG0110.jpg",
+                            "photo2": "observations/SFC2_McKenzie_2016_SW_View.jpg",
+                            "date": "2016-01-26",
+                            "photo10": "observations/SFC2_2016_Hoop4_Angle.jpg"
+                        },
+                        "parentobs_label": "7747: R2R transect",
+                        "type_label": "R2R transect",
+                        "label": "7748: R2R transect",
+                        "site_label": "McKenzie01",
+                        "observer_label": "KentReeves",
+                        "entered_label": "2019-04-12 04:24 PM"
+                    }
+                ],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7747: R2R transect",
+                "site_label": "McKenzie01",
+                "observer_label": "KentReeves",
+                "entered_label": "2019-04-12 03:40 PM",
+                "cap3": "Hoop 1 Vertical  ",
+                "cap5": "Hoop 2 Vertical",
+                "cap14": null,
+                "photo9": "observations/09012015 SFC McKP Hoop 4a_MPwAzMe.jpg",
+                "page1": "observations/09012015 SFC McKP Page 1_sfUv3EA.jpg",
+                "cap8": "Hoop 3 w/Billy No Horizon Angle",
+                "cap1": "Midpoint NE View",
+                "photo8": "observations/09012015 SFC McKP Hoop 4.jpg",
+                "photo4": "observations/09012015 SFC McKP Hoop 1a_Gh17JA6.jpg",
+                "cap10": "Hoop 4 Angle No Horizon",
+                "page3": "observations/09012015 SFC McKP Page 3_pg2gM9v.jpg",
+                "photo5": "observations/09012015 SFC McKP Hoop 2_UnyNuUW.jpg",
+                "cap9": "Hoop 4 Vertical",
+                "photo7": "observations/09012015 SFC McKP Hoop 3d_7vdoRdJ.jpg",
+                "description": null,
+                "cap4": "Hoop 1 Angle No Horizon",
+                "observers": "Billy Freeman",
+                "cap7": "Hoop 3 Vertical",
+                "cap11": "Hoop 5 Vertical",
+                "cap6": "Hoop 2 Angle No Horizon",
+                "cap12": "Hoop 5 Angle No Horizon",
+                "photo12": "observations/09012015 SFC McKP Hoop 5b_8hFXnmP.jpg",
+                "photo13": "observations/09012015 SFC McKP Hoop 5 Billy Freeman.jpg",
+                "cap2": "Midpoint SW View",
+                "cap13": "Hoop 5 with Billy Endpoint 25' from Pine",
+                "photo3": "observations/09012015 SFC McKP Hoop 1_hDluVXU.jpg",
+                "photo11": "observations/09012015 SFC McKP Hoop 5_Pj8Df9N.jpg",
+                "page2": "observations/09012015 SFC McKP Page 2_5IixWPK.jpg",
+                "photo6": "observations/09012015 SFC McKP Hoop 2d_z42ja0z.jpg",
+                "photo1": "observations/09012015 SFC McKP Midpoint NE View_TIEYVmY.jpg",
+                "photo2": "observations/09012015 SFC McKP Midpoint SW View_ylYXz6A.jpg",
+                "date": "2015-01-09",
+                "photo10": "observations/09012015 SFC McKP Hoop 4b_4JyxEj3.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7603,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -116.86488,
+                    32.678814
+                ]
+            },
+            "properties": {
+                "parentobs_id": 7290,
+                "type_id": 49,
+                "entered": "2018-11-18T00:03:34.439194Z",
+                "site_id": 898,
+                "childobs": [],
+                "parentobs_label": "7290: R2R transect",
+                "type_label": "R2R transect",
+                "label": "7603: R2R transect",
+                "site_label": "Rancho Jamul Ecological Reserve (RJER) Field 8A",
+                "observer_label": "Peter_Donovan",
+                "entered_label": "2018-11-18 12:03 AM",
+                "cap3": "RJER-8A Point 1 at 15' straight.",
+                "cap5": "RJER-8A Point 2 at 34' straight.",
+                "cap14": null,
+                "photo9": "observations/20181025_Point4straight_bTwGjcg.jpg",
+                "cap8": "RJER-8A Point 3 at 60' angle.",
+                "cap1": "RJER - 8A Midpoint 50' Looking NW.",
+                "photo8": "observations/20181025_Point3angle_uMAZKaW.jpg",
+                "photo4": "observations/20181025_Point1angle_G0pRwcw.jpg",
+                "cap10": "RJER-8A Point 4 at 86' angle.",
+                "page3": "observations/20181117_111124.jpg",
+                "photo5": "observations/20181025_Point2straight_blwXkbX.jpg",
+                "cap9": "RJER-8A Point 4 at 86' straight.",
+                "photo7": "observations/20181025_Point3straight_ppfh1Vf.jpg",
+                "description": null,
+                "cap4": "RJER-8A Point 1 at 15' angle.",
+                "observers": "John Austel and Glynna Hoekstra.",
+                "cap7": "RJER-8A Point 3 at 60' straight.",
+                "cap11": null,
+                "cap6": "RJER-8A Point 2 at 34' angle.",
+                "cap12": null,
+                "cap2": "RJER - 8A Midpoint 50' Looking SE. ",
+                "cap13": null,
+                "photo3": "observations/20181025_Point1straight_WFFIuTi.jpg",
+                "page2": "observations/20181117_111108.jpg",
+                "photo6": "observations/20181025_Point2angle_7maQS6p.jpg",
+                "photo1": "observations/20181025_MidpointNW_MitYv4J.jpg",
+                "photo2": "observations/20181025_MidpointSE_ufcdYWz.jpg",
+                "date": "2018-10-25",
+                "photo10": "observations/20181025_Point4angle_igjeBKZ.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7601,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.553706,
+                    41.546375
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2018-11-17T23:18:34.012535Z",
+                "site_id": 974,
+                "childobs": [],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7601: R2R transect",
+                "site_label": "Belcampo - Peter's Pivot",
+                "observer_label": "kengewa9ca70c5fcc1549c7",
+                "entered_label": "2018-11-17 11:18 PM",
+                "cap3": "Belcampo - Peter's Pivot Point 1 at 47' straight.",
+                "cap5": "Belcampo - Peter's Pivot Point 2 at 102' straight.",
+                "cap14": null,
+                "page1": "observations/Belcampo_BPHP_2016_DataSheet_Page1_YeM8cgh.jpg",
+                "cap8": "Belcampo - Peter's Pivot Point 3 at 145' angle. ",
+                "cap1": "Filler photo.  Watch this space.",
+                "photo8": "observations/Belcampo_BPHP_2016_Hoop3Angle_h7Hpgqp.jpg",
+                "photo4": "observations/Belcampo_BPHP_2016_Hoop1Angle_eT7sDzR.jpg",
+                "cap10": null,
+                "cap9": null,
+                "photo5": "observations/Belcampo_BPHP_2016_Hoop2SD_ZNYt2Kj.jpg",
+                "cap13": null,
+                "photo7": "observations/Belcampo_BPHP_2016_Hoop3SD_aKF7lZr.jpg",
+                "description": null,
+                "cap4": "Belcampo - Peter's Pivot Point 1 at 47' angle.",
+                "observers": "Bill Eiler, JP Thompson, Nick, Travis, and Peter Donovan",
+                "cap7": "Belcampo - Peter's Pivot Point 3 at 145' straight.",
+                "cap11": null,
+                "cap6": "Belcampo - Peter's Pivot Point 2 at 102' angle.",
+                "cap12": null,
+                "cap2": "Filler photo.  Watch this space, too.",
+                "photo3": "observations/Belcampo_BPHP_2016_Hoop1SD_JRW4Pdc.jpg",
+                "page2": "observations/Belcampo_BPHP_2016_DataSheet_Page2_xz8LUTB.jpg",
+                "photo6": "observations/Belcampo_BPHP_2016_Hoop2Angle_bM6QZ55.jpg",
+                "photo1": "observations/20160510_142805_iwbEaq7.jpg",
+                "photo2": "observations/20160510_165716_Ap2JuJd.jpg",
+                "date": "2016-05-10"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7600,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.840003,
+                    41.448949
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2018-11-17T19:36:05.462511Z",
+                "site_id": 973,
+                "childobs": [],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7600: R2R transect",
+                "site_label": "Scott River Ranch - Coyote Point",
+                "observer_label": "Peter_Donovan",
+                "entered_label": "2018-11-17 07:36 PM",
+                "cap3": "SRR CP Point 1 at 20' straight.",
+                "cap5": "SRR CP Point 2 at 40' straight.",
+                "cap14": null,
+                "photo9": "observations/SRR CP Pt. 4 70' 06122018.jpg",
+                "page1": "observations/20181117_110609.jpg",
+                "cap8": "SRR CP Point 3 at 60' angle.",
+                "cap1": "Mid point looking west towards 0' along SRR CP transect.",
+                "photo8": "observations/SRR CP Pt. 3 60' Angle 06122018.jpg",
+                "photo4": "observations/SRR CP Pt. 1 20' Angle 06122018.jpg",
+                "cap10": "SRR CP Point 4 at 70' angle.",
+                "page3": "observations/20181117_110626.jpg",
+                "photo5": "observations/SRR CP Pt. 2 40' 06122018.jpg",
+                "cap9": "SRR CP Point 4 at 70' straight.",
+                "photo7": "observations/SRR CP Pt. 3 60' 06122018.jpg",
+                "description": null,
+                "cap4": "SRR CP Point 1 at 20' angle.",
+                "observers": "Gareth, Millie, & Alexis Plank, Stephen Smith",
+                "cap7": "SRR CP Point 3 at 60' straight.",
+                "cap11": "SRR CP Point 5 at 90' straight.",
+                "cap6": "SRR CP Point 2 at 40' angle.",
+                "cap12": "SRR CP Point 5 at 90' angle.",
+                "photo12": "observations/SRR CP Pt. 5 90' Angle 06122018.jpg",
+                "cap2": "Mid point looking east towards 100' along SRR CP transect. ",
+                "cap13": null,
+                "photo3": "observations/SRR CP Pt. 1 20' 06122018.jpg",
+                "photo11": "observations/SRR CP Pt. 5 90' 06122018.jpg",
+                "page2": "observations/20181117_110616.jpg",
+                "photo6": "observations/SRR CP Pt. 2 40' Angle 06122018.jpg",
+                "photo1": "observations/SRR CP 50' 288 West 06122018.jpg",
+                "photo2": "observations/SRR CP 50' 106 East 06122018.jpg",
+                "date": "2018-06-12",
+                "photo10": "observations/SRR CP Pt. 4 70' Angle 06122018.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7489,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -119.172601,
+                    36.332617
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2018-08-23T22:16:23.372544Z",
+                "site_id": 934,
+                "childobs": [],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7489: R2R transect",
+                "site_label": "Kaweah Oaks Preserve  Rancher to Rancher Transect",
+                "observer_label": "ben",
+                "entered_label": "2018-08-23 10:16 PM",
+                "cap3": "Sacatone plants show dead and grey stalks in basal area",
+                "cap5": null,
+                "cap14": null,
+                "page1": "observations/KOP MP1 Key Indicators 2018.pdf",
+                "cap8": null,
+                "cap1": "Ben Munger holding info board looking towards Deep Creek",
+                "photo4": "observations/KOP MP1 Key Indicators 2018_eRZRfQq.pdf",
+                "cap10": null,
+                "cap9": null,
+                "cap13": null,
+                "description": "Pasture is primarily Alkali Sacatone with Salt Grass and non-native annuals.  ",
+                "cap4": "Key Indicators PDF",
+                "observers": "Kent Reeves",
+                "cap7": null,
+                "cap11": null,
+                "cap6": null,
+                "cap12": null,
+                "cap2": "Ben Munger holding info board looking towards corral and bathrooms ",
+                "photo3": "observations/KOP MP1 PT1 21' 04272018.jpg",
+                "page2": "observations/KOP MP1 4 Ecological Processes 2018.pdf",
+                "photo1": "observations/KOP MP1 Center of Transect NW View 04272018.jpg",
+                "photo2": "observations/KOP MP1 Center of Transect SE View 04272018.jpg",
+                "date": "2018-04-27"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7290,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -116.86488,
+                    32.678814
+                ]
+            },
+            "properties": {
+                "parentobs_id": 7288,
+                "type_id": 49,
+                "entered": "2018-02-23T19:16:02.321950Z",
+                "site_id": 898,
+                "childobs": [
+                    {
+                        "id": 7603,
+                        "observer_id": 1,
+                        "parentobs_id": 7290,
+                        "type_id": 49,
+                        "entered": "2018-11-18T00:03:34.439194Z",
+                        "site_id": 898,
+                        "values": {
+                            "cap3": "RJER-8A Point 1 at 15' straight.",
+                            "cap5": "RJER-8A Point 2 at 34' straight.",
+                            "cap14": null,
+                            "photo9": "observations/20181025_Point4straight_bTwGjcg.jpg",
+                            "cap8": "RJER-8A Point 3 at 60' angle.",
+                            "cap1": "RJER - 8A Midpoint 50' Looking NW.",
+                            "photo8": "observations/20181025_Point3angle_uMAZKaW.jpg",
+                            "photo4": "observations/20181025_Point1angle_G0pRwcw.jpg",
+                            "cap10": "RJER-8A Point 4 at 86' angle.",
+                            "page3": "observations/20181117_111124.jpg",
+                            "photo5": "observations/20181025_Point2straight_blwXkbX.jpg",
+                            "cap9": "RJER-8A Point 4 at 86' straight.",
+                            "photo7": "observations/20181025_Point3straight_ppfh1Vf.jpg",
+                            "description": null,
+                            "cap4": "RJER-8A Point 1 at 15' angle.",
+                            "observers": "John Austel and Glynna Hoekstra.",
+                            "cap7": "RJER-8A Point 3 at 60' straight.",
+                            "cap11": null,
+                            "cap6": "RJER-8A Point 2 at 34' angle.",
+                            "cap12": null,
+                            "cap2": "RJER - 8A Midpoint 50' Looking SE. ",
+                            "cap13": null,
+                            "photo3": "observations/20181025_Point1straight_WFFIuTi.jpg",
+                            "page2": "observations/20181117_111108.jpg",
+                            "photo6": "observations/20181025_Point2angle_7maQS6p.jpg",
+                            "photo1": "observations/20181025_MidpointNW_MitYv4J.jpg",
+                            "photo2": "observations/20181025_MidpointSE_ufcdYWz.jpg",
+                            "date": "2018-10-25",
+                            "photo10": "observations/20181025_Point4angle_igjeBKZ.jpg"
+                        },
+                        "parentobs_label": "7290: R2R transect",
+                        "type_label": "R2R transect",
+                        "label": "7603: R2R transect",
+                        "site_label": "Rancho Jamul Ecological Reserve (RJER) Field 8A",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2018-11-18 12:03 AM"
+                    }
+                ],
+                "parentobs_label": "7288: R2R transect",
+                "type_label": "R2R transect",
+                "label": "7290: R2R transect",
+                "site_label": "Rancho Jamul Ecological Reserve (RJER) Field 8A",
+                "observer_label": "KentReevesc2fde45ba272417c",
+                "entered_label": "2018-02-23 07:16 PM",
+                "cap3": "2017 RJER 8A 100' SE View",
+                "cap5": "2017 RJER 8A Pt. 1 15' Vertical",
+                "cap14": null,
+                "photo9": "observations/RJER 8A 2017 Point 3 Str8_yYq91St.jpg",
+                "page1": "observations/RJER 2016 PG1_J4beNwR.jpg",
+                "cap8": "2017 RJER 8A Pt 2 34' Angle",
+                "cap1": "2017 RJER 8A 0' NW View",
+                "photo8": "observations/RJER 8A 2017 Point 2 Angle._BZJVCRe.jpg",
+                "photo4": "observations/imagejpeg_3.jpg",
+                "cap10": "2017 RJER 8A Pt. 3 60' Angle",
+                "page3": "observations/RJER-8A 2017 2 pg 3_IqDqOSm.pdf",
+                "photo5": "observations/RJER 8A 2017 Point 1 Str8._28foM0b.jpg",
+                "cap9": "2017 RJER 8A Pt. 3 60' Vertical",
+                "photo7": "observations/RJER 8A 2017 Point 2 Str8_QRdfgLk.jpg",
+                "description": "Page 1 of 2017 observations is the original page from 2016. No changes.",
+                "cap4": "No midpoint photo taken SE in 2017. Random photo of Kent and Poop.",
+                "observers": "John Austel",
+                "cap7": "2017 RJER 8A Pt. 2 34' Vertical",
+                "cap11": "2017 RJER 8A Pt. 4 86' Vertical",
+                "cap6": "2017 RJER 8A Pt. 1 15' Angle",
+                "cap12": "2017 RJER 8A Pt. 4 86' Angle",
+                "photo12": "observations/RJER 8A 2017 Point 4 Angle_eR7yD2k.jpg",
+                "cap2": "No midpoint photo taken in 2017. Random photo of 8A.",
+                "cap13": null,
+                "photo3": "observations/RJER 8A 2017 100' SE_pPd4J38.jpg",
+                "photo11": "observations/RJER 8A 2017 Point 4 Str8._0I6g9Dc.jpg",
+                "page2": "observations/RJER-8A 2017 1 pg 2_7uecv8w.pdf",
+                "photo6": "observations/RJER 8A 2017 Point 1 Angle 2._eexMTS0.jpg",
+                "photo1": "observations/RJER 8A 2017 0' NW_9mqPigy.jpg",
+                "photo2": "observations/imagejpeg_4_HLoSPCI.jpg",
+                "date": "2017-10-25",
+                "photo10": "observations/RJER 8A 2017 Point 3 Angle_1ZoT4aG.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7288,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -116.86488,
+                    32.678814
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2018-02-23T18:18:10.775764Z",
+                "site_id": 898,
+                "childobs": [
+                    {
+                        "id": 7290,
+                        "observer_id": 56,
+                        "parentobs_id": 7288,
+                        "type_id": 49,
+                        "entered": "2018-02-23T19:16:02.321950Z",
+                        "site_id": 898,
+                        "values": {
+                            "cap3": "2017 RJER 8A 100' SE View",
+                            "cap5": "2017 RJER 8A Pt. 1 15' Vertical",
+                            "cap14": null,
+                            "photo9": "observations/RJER 8A 2017 Point 3 Str8_yYq91St.jpg",
+                            "page1": "observations/RJER 2016 PG1_J4beNwR.jpg",
+                            "cap8": "2017 RJER 8A Pt 2 34' Angle",
+                            "cap1": "2017 RJER 8A 0' NW View",
+                            "photo8": "observations/RJER 8A 2017 Point 2 Angle._BZJVCRe.jpg",
+                            "photo4": "observations/imagejpeg_3.jpg",
+                            "cap10": "2017 RJER 8A Pt. 3 60' Angle",
+                            "page3": "observations/RJER-8A 2017 2 pg 3_IqDqOSm.pdf",
+                            "photo5": "observations/RJER 8A 2017 Point 1 Str8._28foM0b.jpg",
+                            "cap9": "2017 RJER 8A Pt. 3 60' Vertical",
+                            "photo7": "observations/RJER 8A 2017 Point 2 Str8_QRdfgLk.jpg",
+                            "description": "Page 1 of 2017 observations is the original page from 2016. No changes.",
+                            "cap4": "No midpoint photo taken SE in 2017. Random photo of Kent and Poop.",
+                            "observers": "John Austel",
+                            "cap7": "2017 RJER 8A Pt. 2 34' Vertical",
+                            "cap11": "2017 RJER 8A Pt. 4 86' Vertical",
+                            "cap6": "2017 RJER 8A Pt. 1 15' Angle",
+                            "cap12": "2017 RJER 8A Pt. 4 86' Angle",
+                            "photo12": "observations/RJER 8A 2017 Point 4 Angle_eR7yD2k.jpg",
+                            "cap2": "No midpoint photo taken in 2017. Random photo of 8A.",
+                            "cap13": null,
+                            "photo3": "observations/RJER 8A 2017 100' SE_pPd4J38.jpg",
+                            "photo11": "observations/RJER 8A 2017 Point 4 Str8._0I6g9Dc.jpg",
+                            "page2": "observations/RJER-8A 2017 1 pg 2_7uecv8w.pdf",
+                            "photo6": "observations/RJER 8A 2017 Point 1 Angle 2._eexMTS0.jpg",
+                            "photo1": "observations/RJER 8A 2017 0' NW_9mqPigy.jpg",
+                            "photo2": "observations/imagejpeg_4_HLoSPCI.jpg",
+                            "date": "2017-10-25",
+                            "photo10": "observations/RJER 8A 2017 Point 3 Angle_1ZoT4aG.jpg"
+                        },
+                        "parentobs_label": "7288: R2R transect",
+                        "type_label": "R2R transect",
+                        "label": "7290: R2R transect",
+                        "site_label": "Rancho Jamul Ecological Reserve (RJER) Field 8A",
+                        "observer_label": "KentReevesc2fde45ba272417c",
+                        "entered_label": "2018-02-23 07:16 PM"
+                    }
+                ],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7288: R2R transect",
+                "site_label": "Rancho Jamul Ecological Reserve (RJER) Field 8A",
+                "observer_label": "KentReevesc2fde45ba272417c",
+                "entered_label": "2018-02-23 06:18 PM",
+                "cap3": "2016 RJER 8A 100' SE View",
+                "cap5": "2016 RJER 8A Transect Pt. 1 15' Vertical",
+                "cap14": null,
+                "photo9": "observations/RJER 2016 Point 3 Str8_rl6CrNz.jpg",
+                "page1": "observations/RJER 2016 PG1_ve1Fddf.jpg",
+                "cap8": "2016 RJER 8A Pt. 2 34' Angle",
+                "cap1": "2016 RJER 8A 0' NW View",
+                "photo8": "observations/RJER 2016 Point 2 Angle.jpg",
+                "photo4": "observations/RJER 2016 50' SE Horizontal_S79woMu.jpg",
+                "cap10": "2016 RJER 8A Pt. 3 60' Angle",
+                "page3": "observations/RJER 2016 PG3_gSLBQCb.jpg",
+                "photo5": "observations/RJER 2016 Point 1 Str8_our2bg9.jpg",
+                "cap9": "2016 RJER 8A Pt. 3 60' Vertical",
+                "photo7": "observations/RJER 2016 Point 2 Str8_iUJAhD6.jpg",
+                "description": null,
+                "cap4": "2016 RJER 8A 50' SE View",
+                "observers": "John Austel",
+                "cap7": "2016 RJER 8A Pt. 2 34' Vertical",
+                "cap11": "2016 RJER 8A Pt. 4 86' Vertical ",
+                "cap6": "2016 RJER 8A Pt. 1 15' Angle",
+                "cap12": "2016 RJER 8A Pt. 4 86' Angle",
+                "photo12": "observations/RJER 2016 Point 4 Angle_GeSvOKk.jpg",
+                "cap2": "2016 RJER 8A 50' NW View",
+                "cap13": null,
+                "photo3": "observations/RJER 2016 100' SE Horizontal_qMTEApE.jpg",
+                "photo11": "observations/RJER 2016 Point 4 Str8_qyok7yB.jpg",
+                "page2": "observations/RJER 2016 PG2_mgGvicb.jpg",
+                "photo6": "observations/RJER 2016 Point 1 Angle_WD3Lq6L.jpg",
+                "photo1": "observations/RJER 2016 0' NW Vertical_NWg9JZP.jpg",
+                "photo2": "observations/RJER 2016 50' NW Horizontal_wSQBsvb.jpg",
+                "date": "2016-10-25",
+                "photo10": "observations/RJER 2016 Point 3 Angle_Huy8O3A.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7084,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -120.143586,
+                    34.475261
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2017-09-21T13:49:31.712903Z",
+                "site_id": 848,
+                "childobs": [],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7084: R2R transect",
+                "site_label": "AHT1",
+                "observer_label": "Peter_Donovan",
+                "entered_label": "2017-09-21 01:49 PM",
+                "cap3": "downslope from NW corner",
+                "cap5": "hoop 18 feet",
+                "cap14": "hoop 102 feet, step back",
+                "photo9": "observations/68 DSCN5211.JPG",
+                "page1": "observations/1.jpg",
+                "cap8": "hoop 40 feet step back",
+                "cap1": "downslope from transect midpoint",
+                "photo8": "observations/40 overview DSCN5214.JPG",
+                "photo4": "observations/T1, upslope from SE corner.JPG",
+                "cap10": "hoop 68 feet step back",
+                "page3": "observations/3.jpg",
+                "photo5": "observations/18 DSCN5215.JPG",
+                "cap9": "hoop 68 feet",
+                "photo7": "observations/40 DSCN5213.JPG",
+                "description": null,
+                "cap4": "upslope from SE corner",
+                "observers": "John Warner, Anne Coates, Doug Campbell",
+                "cap7": "hoop 40 feet",
+                "cap11": "hoop 86 feet",
+                "cap6": "hoop 18 feet step back",
+                "cap12": "hoop 86 feet step back",
+                "photo12": "observations/86 overview DSCN5210.JPG",
+                "photo14": "observations/102 overview DSCN5208.JPG",
+                "photo13": "observations/102 DSCN5207.JPG",
+                "cap2": "upslope from transect midpoint",
+                "cap13": "hoop 102 feet",
+                "photo3": "observations/T1, downslope from NW corner.JPG",
+                "photo11": "observations/86 DSCN5209.JPG",
+                "page2": "observations/2.jpg",
+                "photo6": "observations/18 overview DSCN5218.JPG",
+                "photo1": "observations/T1, downslope from midpoint transect.JPG",
+                "photo2": "observations/T1, upslope from midpoint transect.JPG",
+                "date": "2015-04-08",
+                "photo10": "observations/68 overview DSCN5212.JPG"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7083,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -121.64935,
+                    36.54584
+                ]
+            },
+            "properties": {
+                "parentobs_id": 7071,
+                "type_id": 49,
+                "entered": "2017-09-15T20:30:12.457700Z",
+                "site_id": 847,
+                "childobs": [],
+                "parentobs_label": "7071: R2R transect",
+                "type_label": "R2R transect",
+                "label": "7083: R2R transect",
+                "site_label": "Lower Gum Tree Field",
+                "observer_label": "Peter_Donovan",
+                "entered_label": "2017-09-15 08:30 PM",
+                "cap3": "hoop 1",
+                "cap5": "hoop 2",
+                "cap14": null,
+                "cap8": null,
+                "cap1": "looking SW along transect",
+                "photo4": "observations/Mt_Toro_LGTF_2016_Hoop1Angle.jpg",
+                "cap10": null,
+                "cap9": null,
+                "photo5": "observations/Mt_Toro_LGTF_2016_Hoop2SD.jpg",
+                "cap13": null,
+                "photo7": "observations/Mt_Toro_LGTF_2016_Hoop3Angle.jpg",
+                "description": null,
+                "cap4": "hoop 1 angle",
+                "observers": "Steve Dorrance",
+                "cap7": "hoop 3 angle",
+                "cap11": null,
+                "cap6": "hoop 3",
+                "cap12": null,
+                "photo14": null,
+                "photo13": null,
+                "cap2": "looking NE along transect",
+                "photo3": "observations/Mt_Toro_LGTF_2016_Hoop1SD.jpg",
+                "page2": "observations/Mt Toro Lower Gum Tree 2016.jpg",
+                "photo6": "observations/Mt_Toro_LGTF_2016_Hoop3SD.jpg",
+                "photo1": "observations/Mt_Toro_LGTF_2016_EndpointLookingSE.jpg",
+                "photo2": "observations/Mt_Toro_LGTF_2016_LookingNE.jpg",
+                "date": "2016-06-07"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7071,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -121.64935,
+                    36.54584
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2017-09-13T11:46:23.651077Z",
+                "site_id": 847,
+                "childobs": [
+                    {
+                        "id": 7083,
+                        "observer_id": 1,
+                        "parentobs_id": 7071,
+                        "type_id": 49,
+                        "entered": "2017-09-15T20:30:12.457700Z",
+                        "site_id": 847,
+                        "values": {
+                            "cap3": "hoop 1",
+                            "cap5": "hoop 2",
+                            "cap14": null,
+                            "cap8": null,
+                            "cap1": "looking SW along transect",
+                            "photo4": "observations/Mt_Toro_LGTF_2016_Hoop1Angle.jpg",
+                            "cap10": null,
+                            "cap9": null,
+                            "photo5": "observations/Mt_Toro_LGTF_2016_Hoop2SD.jpg",
+                            "cap13": null,
+                            "photo7": "observations/Mt_Toro_LGTF_2016_Hoop3Angle.jpg",
+                            "description": null,
+                            "cap4": "hoop 1 angle",
+                            "observers": "Steve Dorrance",
+                            "cap7": "hoop 3 angle",
+                            "cap11": null,
+                            "cap6": "hoop 3",
+                            "cap12": null,
+                            "photo14": null,
+                            "photo13": null,
+                            "cap2": "looking NE along transect",
+                            "photo3": "observations/Mt_Toro_LGTF_2016_Hoop1SD.jpg",
+                            "page2": "observations/Mt Toro Lower Gum Tree 2016.jpg",
+                            "photo6": "observations/Mt_Toro_LGTF_2016_Hoop3SD.jpg",
+                            "photo1": "observations/Mt_Toro_LGTF_2016_EndpointLookingSE.jpg",
+                            "photo2": "observations/Mt_Toro_LGTF_2016_LookingNE.jpg",
+                            "date": "2016-06-07"
+                        },
+                        "parentobs_label": "7071: R2R transect",
+                        "type_label": "R2R transect",
+                        "label": "7083: R2R transect",
+                        "site_label": "Lower Gum Tree Field",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2017-09-15 08:30 PM"
+                    },
+                    {
+                        "id": 7072,
+                        "observer_id": 1,
+                        "parentobs_id": 7071,
+                        "type_id": 16,
+                        "entered": "2017-09-13T11:49:08.236116Z",
+                        "site_id": 847,
+                        "values": {
+                            "photo": "observations/Mt_Toro1_LGTF_2015_Hoop5Angle.JPG",
+                            "photodescription": "hoop 5 angle, 80 feet",
+                            "date": "2015-06-16"
+                        },
+                        "parentobs_label": "7071: R2R transect",
+                        "type_label": "Photo",
+                        "label": "7072: Photo",
+                        "site_label": "Lower Gum Tree Field",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2017-09-13 11:49 AM"
+                    }
+                ],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7071: R2R transect",
+                "site_label": "Lower Gum Tree Field",
+                "observer_label": "Peter_Donovan",
+                "entered_label": "2017-09-13 11:46 AM",
+                "cap3": "from midpoint looking SW",
+                "cap5": "hoop 1, angle",
+                "cap14": null,
+                "photo9": "observations/Mt_Toro1_LGTF_2015_Hoop3Angle.JPG",
+                "page1": "observations/Mt_Toro1_LGTF_2015_DataSheetPage1.jpg",
+                "cap8": "hoop 3, 40 feet",
+                "cap1": "end point looking southwest along transect",
+                "photo8": "observations/Mt_Toro1_LGTF_2015_Hoop3SD.JPG",
+                "photo4": "observations/Mt_Toro1_LGTF_2015_Hoop1SD.JPG",
+                "cap10": "hoop 4, 60 feet",
+                "page3": "observations/Mt_Toro1_LGTF_2015_DataSheetPage3.jpg",
+                "photo5": "observations/Mt_Toro1_LGTF_2015_Hoop1Angle.JPG",
+                "cap9": "hoop 3 angle",
+                "photo7": "observations/Mt_Toro1_LGTF_2015_Hoop2Angle.JPG",
+                "description": null,
+                "cap4": "hoop 1, 0 point of transect",
+                "observers": "Steve Dorrance, Leslie Dorrance",
+                "cap7": "hoop 2, angle",
+                "cap11": "hoop 4 angle",
+                "cap6": "hoop 2, 20 feet",
+                "cap12": "hoop 5, 80 feet",
+                "photo12": "observations/Mt_Toro1_LGTF_2015_Hoop5SD.JPG",
+                "photo14": null,
+                "photo13": "observations/Mt_Toro1_LGTF_2015_Hoop5Angle.JPG",
+                "cap2": "midpoint looking NE",
+                "cap13": "hoop 5, angle photo",
+                "photo3": "observations/Mt_Toro1_LGTF_2015_MidPointLookingSW.JPG",
+                "photo11": "observations/Mt_Toro1_LGTF_2015_Hoop4Angle.JPG",
+                "page2": "observations/Mt_Toro1_LGTF_2015_DataSheetPage2.jpg",
+                "photo6": "observations/Mt_Toro1_LGTF_2015_Hoop2SD.JPG",
+                "photo1": "observations/Mt_Toro1_LGTF_2015_EndPointLookingSW.JPG",
+                "photo2": "observations/Mt_Toro1_LGTF_2015_MidPointLookingNE.JPG",
+                "date": "2015-06-16",
+                "photo10": "observations/Mt_Toro1_LGTF_2015_Hoop4SD.JPG"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7069,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -121.64635,
+                    36.54702
+                ]
+            },
+            "properties": {
+                "parentobs_id": 7066,
+                "type_id": 49,
+                "entered": "2017-09-09T21:06:12.187566Z",
+                "site_id": 846,
+                "childobs": [
+                    {
+                        "id": 7070,
+                        "observer_id": 1,
+                        "parentobs_id": 7069,
+                        "type_id": 16,
+                        "entered": "2017-09-11T14:08:43.380840Z",
+                        "site_id": 846,
+                        "values": {
+                            "photo": "observations/Mt_Toro_UGTF_2016_Hoop5Angle_QcSUQqA.jpg",
+                            "photodescription": "hoop 5, angle photo",
+                            "date": "2016-06-07"
+                        },
+                        "parentobs_label": "7069: R2R transect",
+                        "type_label": "Photo",
+                        "label": "7070: Photo",
+                        "site_label": "Upper Gum Tree Field",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2017-09-11 02:08 PM"
+                    }
+                ],
+                "parentobs_label": "7066: R2R transect",
+                "type_label": "R2R transect",
+                "label": "7069: R2R transect",
+                "site_label": "Upper Gum Tree Field",
+                "observer_label": "kengewa",
+                "entered_label": "2017-09-09 09:06 PM",
+                "cap3": null,
+                "cap5": "hoop 1, angle",
+                "cap14": null,
+                "photo9": "observations/Mt_Toro_UGTF_2016_Hoop3Angle.jpg",
+                "cap8": "hoop 3, 50 feet",
+                "cap1": "from 0 point looking NE",
+                "photo8": "observations/Mt_Toro_UGTF_2016_Hoop3SD.jpg",
+                "photo4": "observations/Mt_Toro_UGTF_2016_Hoop1SD.jpg",
+                "cap10": "hoop 4, 75 feet",
+                "cap9": "hoop 3, angle",
+                "photo5": "observations/Mt_Toro_UGTF_2016_Hoop1Angle.jpg",
+                "cap13": "hoop 5, angle photo",
+                "photo7": "observations/Mt_Toro_UGTF_2016_Hoop2Angle.jpg",
+                "description": null,
+                "cap4": "hoop 1, 0 feet",
+                "observers": "Kent Reeves, Steve Dorrance, Dave Dorrance, Mollie Dorrance",
+                "cap7": "hoop 2, angle",
+                "cap11": "hoop 4, angle",
+                "cap6": "hoop 2, 25 feet",
+                "cap12": "hoop 5, 100 feet",
+                "photo12": "observations/Mt_Toro_UGTF_2016_Hoop5Angle.jpg",
+                "photo14": null,
+                "photo13": "observations/Mt_Toro_UGTF_2016_Hoop5Angle_QcSUQqA.jpg",
+                "cap2": "from 100 point looking SW",
+                "photo3": null,
+                "photo11": "observations/Mt_Toro_UGTF_2016_Hoop4_Angle.jpg",
+                "page2": "observations/Mt Toro Upper Gum Tree 2016.jpg",
+                "photo6": "observations/Mt_Toro_UGTF_2016_Hoop2SD.jpg",
+                "photo1": "observations/Mt_Toro_UGTF_2016_EndpointLookingNE.jpg",
+                "photo2": "observations/Mt_Toro_UGTF_2016_EndpointLookingSW.jpg",
+                "date": "2016-06-07",
+                "photo10": "observations/Mt_Toro_UGTF_2016_Hoop4SD.jpg"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7066,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -121.64635,
+                    36.54702
+                ]
+            },
+            "properties": {
+                "parentobs_id": null,
+                "type_id": 49,
+                "entered": "2017-09-09T20:51:48.208654Z",
+                "site_id": 846,
+                "childobs": [
+                    {
+                        "id": 7069,
+                        "observer_id": 24,
+                        "parentobs_id": 7066,
+                        "type_id": 49,
+                        "entered": "2017-09-09T21:06:12.187566Z",
+                        "site_id": 846,
+                        "values": {
+                            "cap3": null,
+                            "cap5": "hoop 1, angle",
+                            "cap14": null,
+                            "photo9": "observations/Mt_Toro_UGTF_2016_Hoop3Angle.jpg",
+                            "cap8": "hoop 3, 50 feet",
+                            "cap1": "from 0 point looking NE",
+                            "photo8": "observations/Mt_Toro_UGTF_2016_Hoop3SD.jpg",
+                            "photo4": "observations/Mt_Toro_UGTF_2016_Hoop1SD.jpg",
+                            "cap10": "hoop 4, 75 feet",
+                            "cap9": "hoop 3, angle",
+                            "photo5": "observations/Mt_Toro_UGTF_2016_Hoop1Angle.jpg",
+                            "cap13": "hoop 5, angle photo",
+                            "photo7": "observations/Mt_Toro_UGTF_2016_Hoop2Angle.jpg",
+                            "description": null,
+                            "cap4": "hoop 1, 0 feet",
+                            "observers": "Kent Reeves, Steve Dorrance, Dave Dorrance, Mollie Dorrance",
+                            "cap7": "hoop 2, angle",
+                            "cap11": "hoop 4, angle",
+                            "cap6": "hoop 2, 25 feet",
+                            "cap12": "hoop 5, 100 feet",
+                            "photo12": "observations/Mt_Toro_UGTF_2016_Hoop5Angle.jpg",
+                            "photo14": null,
+                            "photo13": "observations/Mt_Toro_UGTF_2016_Hoop5Angle_QcSUQqA.jpg",
+                            "cap2": "from 100 point looking SW",
+                            "photo3": null,
+                            "photo11": "observations/Mt_Toro_UGTF_2016_Hoop4_Angle.jpg",
+                            "page2": "observations/Mt Toro Upper Gum Tree 2016.jpg",
+                            "photo6": "observations/Mt_Toro_UGTF_2016_Hoop2SD.jpg",
+                            "photo1": "observations/Mt_Toro_UGTF_2016_EndpointLookingNE.jpg",
+                            "photo2": "observations/Mt_Toro_UGTF_2016_EndpointLookingSW.jpg",
+                            "date": "2016-06-07",
+                            "photo10": "observations/Mt_Toro_UGTF_2016_Hoop4SD.jpg"
+                        },
+                        "parentobs_label": "7066: R2R transect",
+                        "type_label": "R2R transect",
+                        "label": "7069: R2R transect",
+                        "site_label": "Upper Gum Tree Field",
+                        "observer_label": "kengewa",
+                        "entered_label": "2017-09-09 09:06 PM"
+                    },
+                    {
+                        "id": 7068,
+                        "observer_id": 1,
+                        "parentobs_id": 7066,
+                        "type_id": 16,
+                        "entered": "2017-09-09T20:54:46.710881Z",
+                        "site_id": 846,
+                        "values": {
+                            "photo": "observations/Mt_Toro1_2015_UGTF_MidPointLookingSW.JPG",
+                            "photodescription": "midpoint of transect looking SW",
+                            "date": "2015-06-15"
+                        },
+                        "parentobs_label": "7066: R2R transect",
+                        "type_label": "Photo",
+                        "label": "7068: Photo",
+                        "site_label": "Upper Gum Tree Field",
+                        "observer_label": "Peter_Donovan",
+                        "entered_label": "2017-09-09 08:54 PM"
+                    }
+                ],
+                "parentobs_label": null,
+                "type_label": "R2R transect",
+                "label": "7066: R2R transect",
+                "site_label": "Upper Gum Tree Field",
+                "observer_label": "kengewa",
+                "entered_label": "2017-09-09 08:51 PM",
+                "cap3": "end point looking NE",
+                "cap5": "hoop 1, angle",
+                "cap14": null,
+                "photo9": "observations/Mt_Toro1_2015_UGTF_Hoop3Angle.JPG",
+                "page1": "observations/Mt_Toro1_UGTF_2015_DataSheetPage1.jpg",
+                "cap8": "hoop 3, 50 feet",
+                "cap1": "from end point looking NE along transect",
+                "photo8": "observations/Mt_Toro1_2015_UGTF_Hoop3SD.JPG",
+                "photo4": "observations/Mt_Toro1_2015_UGTF_Hoop1SD.JPG",
+                "cap10": "hoop 4, 75 feet",
+                "page3": "observations/Mt_Toro1_UGTF_2015_DataSheetPage3.jpg",
+                "photo5": "observations/Mt_Toro1_2015_UGTF_Hoop1Angle.JPG",
+                "cap9": "hoop 3, angle",
+                "photo7": "observations/Mt_Toro1_2015_UGTF_Hoop2Angle.JPG",
+                "description": null,
+                "cap4": "hoop 1, 0 feet",
+                "observers": "Kent Reeves, Steve Dorrance, Leslie Dorrance, Mollie Dorrance",
+                "cap7": "hoop 2, angle",
+                "cap11": "hoop 4, angle",
+                "cap6": "hoop 2, 25 feet",
+                "cap12": "hoop 5, 100 feet",
+                "photo12": "observations/Mt_Toro1_2015_UGTF_Hoop5SD.JPG",
+                "photo14": null,
+                "photo13": "observations/Mt_Toro1_2015_UGTF_Hoop5Angle.JPG",
+                "cap2": "from end point looking SW along transect",
+                "cap13": "hoop 5, 100 feet, angle",
+                "photo3": "observations/Mt_Toro1_2015_UGTF_EndPointNEwithLeslie_Steve.JPG",
+                "photo11": "observations/Mt_Toro1_2015_UGTF_Hoop4Angle (2).JPG",
+                "page2": "observations/Mt_Toro1_UGTF_2015_DataSheetPage2.jpg",
+                "photo6": "observations/Mt_Toro1_2015_UGTF_Hoop2SD.JPG",
+                "photo1": "observations/Mt_Toro1_2015_UGTF_EndPointLookingNE.JPG",
+                "photo2": "observations/Mt_Toro1_2015_UGTF_EndPointLookingSW.JPG",
+                "date": "2015-06-16",
+                "photo10": "observations/Mt_Toro1_2015_UGTF_Hoop4SD.JPG"
+            }
+        }
+    ]
+}

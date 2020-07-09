@@ -1,0 +1,31 @@
+{% extends '_base.html' %} {% block content %}
+<!-- {% load bootstrap %} -->
+
+<div class="container">
+<h2>Observation List</h2>
+<form method="GET">
+{{ filter.form|bootstrap }}
+<button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+{% if filter.qs %}
+<ul>
+
+    {% for obs in filter.qs %}
+    <li>
+        <a href="{% url 'obs:observation_detail' obs.id %}">{{ obs }}</a>
+    </li>
+    {% endfor %}
+
+</ul>
+{% else %}
+<p>Sorry, no observations found for this query.</p>
+{% endif %}
+</div>
+
+
+
+
+
+
+{% endblock %}

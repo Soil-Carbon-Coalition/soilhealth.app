@@ -1,0 +1,16 @@
+{% extends '_base.html' %} 
+{% block title %} 
+Search Results 
+{% endblock title %}
+{% block content %}
+
+<h1>Search Results</h1>
+<p>There are {{ object_list.count }} results to show.</p>
+<ul>
+  {% for obs in object_list %}
+  <li>
+    <a href="{{ obs.get_absolute_url }}">{{ obs }}: {{ obs.kv }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

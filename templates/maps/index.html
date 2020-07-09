@@ -1,0 +1,17 @@
+{% extends '_base.html' %} {% block content %}
+<h1>Latest Maps</h1>
+{% if latest_map_list %}
+<ul>
+  {% for map in latest_map_list %}
+  <li>
+    <!-- this is an example of using a URL namespace, with a colon -->
+    <a href="{% url 'maps:map_detail' map.id %}">{{ map.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No maps are available.</p>
+{% endif %} {% endblock %}
+<!-- <form action="{% url 'obs:search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search..." />
+</form> -->

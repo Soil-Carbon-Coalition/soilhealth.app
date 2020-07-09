@@ -1,0 +1,10 @@
+{% extends '_base.html' %} {% block content %}
+
+<h1>PointSites</h1>
+
+<ul>
+  {% for item in pointsite_list %}
+  <li>{{ item.name }}</li>
+  {% endfor %}
+</ul>
+{% include 'leaflet_point_map.html' %} {% endblock %}

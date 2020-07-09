@@ -1,0 +1,21 @@
+{% extends '_base.html' %} 
+
+{% block title %} 
+Latest sites 
+{% endblock title %}
+
+{% block content %}
+
+<h1>Latest Sites</h1>
+{% if latest_site_list %}
+<ul>
+  {% for site in latest_site_list %}
+  <li>
+    <!-- this is an example of using a URL namespace, with a colon -->
+    <a href="{% url 'obs:site_detail' site.id %}">{{ site.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No sites are available.</p>
+{% endif %} {% endblock %}

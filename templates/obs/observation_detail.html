@@ -1,0 +1,27 @@
+{% extends '_base.html' %} {% block title %} 
+Observation detail 
+{% endblock title %} {% block content %} {% if myobservation %}
+<div class="container">
+<h1>{{ myobservation }}</h1>
+
+<p>Site: {{ myobservation.site }}</p>
+<p>Geometry: {{ myobservation.site.geometry }}</p>
+
+<p>Observer: {{ myobservation.observer }}</p>
+<p>ObservationType: {{ myobservation.type }}</p>
+<p>Entered: {{ myobservation.entered }}</p>
+
+
+<ol>
+{% comment %} using the items dictionary function to iterate JSON field {% endcomment %}
+  {% for k, v in myobservation.kv.items %}
+  <li><b>{{ k }}</b>: {{ v }}</li>
+  {% endfor %}
+</ol>
+
+{% else %}
+
+<p>Observation does not exist.</p>
+{% endif %} 
+</div>
+{% endblock %}

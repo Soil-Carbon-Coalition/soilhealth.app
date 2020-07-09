@@ -1,0 +1,145 @@
+{% extends '_base.html' %} {% load static %} {% block content %}
+<div class="page-header">
+  <h4><a href="/maps/">Map list</a></h4>
+</div>
+<div
+  id="mapid"
+  style="width: 80%; height: 800px; margin-right: 7px; float: left"
+></div>
+<div id="sidebar" style="width: 17%; float: left; padding-left: 5px;">
+  <h3>{{ mymap.name }}</h3>
+  <!-- <p>
+    <em
+      >Zoom control is at upper left. Adjust transparency with this slider, to
+      see road map underneath.</em
+    ><br /><input
+      id="slide"
+      type="range"
+      min="0"
+      max="1"
+      step="0.1"
+      value="1"
+      onchange="updateOpacity(this.value)"
+    />
+  </p>
+  <p>
+    <em>Then this slider allows you to see aerial map underneath.</em
+    ><br /><input
+      id="slide"
+      type="range"
+      min="0"
+      max="1"
+      step="0.1"
+      value="1"
+      onchange="updateOpacityOsm(this.value)"
+    />
+  </p> -->
+  <div>{{ mymap.description }}</div>
+
+  <!-- <p id="info" background-color="blue"></p> -->
+</div>
+<script>
+   // mymap is django context object
+   var map = L.map("mapid", {
+     center: {{ mymap.center }},
+     zoom: {{ mymap.zoom }},
+     fullscreenControl: true,
+     });
+
+   {% for raster in mymap.rasters.all %}
+     var {{ raster.name|cut:" " }} = new L.TileLayer('{{ raster.tileUrl }}',
+     {{ raster.kv|safe }}).addTo(map);
+   {% endfor %}
+
+   function enumerate(obj,s){
+    //if s isn't defined, set it to an empty string
+    s = typeof s !== 'undefined' ? s : '';
+     //iterate across obj, passing keys as k and values as v
+    $.each(obj, function(k,v){
+    //if v has nested depth
+     if(typeof v == "object"){
+    //recursively call enumerate on the nested properties and adding indent
+    enumerate(v,s+"&nbsp;&nbsp;");
+     } else {
+    //append the key & value to the info div sidebar
+      $('#info').append(s + '<b>'+k+'</b>: '+ String(v) + '<br>');
+     }
+    });
+   }
+
+   var popStyle = {'maxWidth':'650','maxHeight':'550','minWidth':'350'}
+           // custom icons;  this array has 8 unique elements and is repeated once so as not to run out
+   var icons = ['','-red','-green','-violet','-orange','-grey','-yellow','-black','','-red','-green','-violet','-orange','-grey','-yellow','-black']
+   function obj2htmltable(obj) {
+     var html = '<table>';
+      for (var key in obj) {
+       var value = obj[key];
+       if (String(value).substring(0,4)==='http'){
+        html += '<tr><td>' + key + '</td><td><a href="' + value +'" target="_blank"><img src="' + value + '" width="350"></a></tr>';
+       } else if (String(value).substring(0,7)==='observa'){
+       html += '<tr><td>' + key + '</td><td><a href="https://atlasbiowork.com/media/' + value +'" target="_blank"><img src="https://atlasbiowork.com/media/' + value + '" width="350"></a></tr>';
+       } else {
+        html += '<tr><td>' + key + '</td><td>' + value + '</tr>';
+        }}
+        html += '</table>';
+        return html;
+    }
+   {% for vector in mymap.vectors.all %}
+     // create a layerGroup for each vector
+     var {{ vector.name|cut:" "}} = L.layerGroup();
+     // create a different uppercase variable for the data
+     var {{ vector.name|cut:" "|upper}} = omnivore.{{ vector.dataSuffix }}('{{ vector.dataUrl }}')
+       .on("ready", function() {
+      // After the 'ready' event fires, the GeoJSON contents are accessible
+      // and you can iterate through layers to bind custom popups.
+         this.eachLayer(function(marker) {
+      // set icons according to index of forloop
+           marker.setIcon(L.icon({
+            iconUrl: "/static/maps/css/images/marker-icon" + icons[{{ forloop.counter0 }}] + ".png",
+           shadowUrl: "/static/maps/css/images/marker-shadow.png"
+            }));
+          if (marker.feature.properties.name){
+            marker.bindTooltip(marker.feature.properties.name);
+          } else{
+           marker.bindTooltip('{{ vector.name }}');}
+         {% if  vector.dataSuffix == 'geojson' %}
+           marker.bindPopup(obj2htmltable(marker.feature.properties),popStyle);
+         {% else %}
+           marker.bindPopup(marker.feature.properties.description,popStyle);
+         {% endif %}
+       });
+     // now add the data to the layer group and add to map so
+    //  vector data will be displayed on load (NOT)
+        {{ vector.name|cut:" "}}.addLayer(this);
+         });
+   {% endfor %}
+
+   //  LAYER CONTROL
+   var baseMaps = {
+     {% for raster in mymap.rasters.all %}
+    '{{ raster.name }}': {{ raster.name|cut:" "}},
+     {% endfor %}
+   };
+   var overlayMaps = {
+     {% for vector in mymap.vectors.all %}
+       '<img id="icon{{ forloop.counter0 }}" width="12"> {{vector.name}}': {{ vector.name|cut:" "}},
+     {% endfor %}
+   }
+   L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+    // this will center map on popup
+   map.on('popupopen', function(e) {
+     var px = map.project(e.popup._latlng);
+     px.y -= e.popup._container.clientHeight / 2.5;
+     map.panTo(map.unproject(px), { animate: true });
+   });
+
+  //  self-invoking function to add the appropriate icons to the layer control
+   (function(){
+     for (var i = 0; i < Object.keys(overlayMaps).length; i++){
+       document.getElementById("icon"+i).src = "/static/maps/css/images/marker-icon" + icons[i] + ".png";
+     }
+   })();
+</script>
+
+{% endblock %}

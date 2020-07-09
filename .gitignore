@@ -1,0 +1,14 @@
+.DS_Store
+*.pyc
+__pycache__
+static/*
+secrets.json
+DjangoNotes.md
+bin/*
+share/*
+soilhealth/*
+lib/*
+lib64
+
+
+
