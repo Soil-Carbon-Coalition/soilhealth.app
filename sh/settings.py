@@ -63,19 +63,11 @@ INSTALLED_APPS = [
     # Third-party
     'rest_framework',
     'rest_framework_gis',
-    # 'rest_framework.authtoken', # is this needed for JWT?
-    # 'rest_auth',
-    # 'rest_auth.registration',
     'allauth',  # this is used in my session auth
     'allauth.account',
     'crispy_forms',
     'debug_toolbar',
-    # 'django_url_filter',
     'django_filters',
-    # 'rest_framework_filters',  # enables filtering across relationships
-    'django_extensions',  # enables shell_plus jupyter notebook
-    # 'djgeojson',  # may not be required for views
-    # 'bootstrapform',
     # 'leaflet',  # django-leaflet
 
     # Local apps
@@ -107,9 +99,6 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080',
     'http://127.0.0.1:8080'
 ]
-# CORS_ORIGIN_REGEX_WHITELIST = [
-# 'http://localhost:8080',
-# ]
 
 ROOT_URLCONF = 'sh.urls'
 
@@ -134,16 +123,6 @@ WSGI_APPLICATION = 'sh.wsgi.application'
 
 
 DATABASES = get_secret("DATABASES")
-# {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'sh',
-#         'USER': 'postgres',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -187,15 +166,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = (
-#     ("js", os.path.join(STATIC_ROOT, 'js')),
-#     ("css", os.path.join(STATIC_ROOT, 'css')),
-#     ("images", os.path.join(STATIC_ROOT, 'images')),
-#  )
-
-# STATIC_ROOT = '/static/'
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = os.path.join(BASE_DIR, "static")
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -242,15 +212,10 @@ REST_FRAMEWORK = {
     #     'rest_framework.renderers.JSONRenderer'
     # ],
     # these require and enable login for API
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    # 'DEFAULT_FILTER_BACKENDS': ['rest_framework_filters.backends.RestFrameworkFilterBackend'],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication', ),
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication', ),
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # 'PAGE_SIZE': 100,
