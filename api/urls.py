@@ -24,7 +24,7 @@ urlpatterns = [
     # path('token', TokenObtainPairView.as_view()), # for JWT
     # path('token/refresh', TokenRefreshView.as_view()), # for JWT
     path('upload/', views.FileUploadView.as_view(), name='upload'),
-    path('user/current/', views.CurrentUserView.as_view(), name='current_user'),
+    path('auth_user/', views.AuthUserView.as_view(), name='auth_user'),
 
 ]
 # Vincent uses this, but with default json renderer it's not needed perhaps

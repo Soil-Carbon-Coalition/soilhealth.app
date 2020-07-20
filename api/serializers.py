@@ -48,6 +48,18 @@ class GeometryField(serializers.Field):
 
 
 class ObsSerializer(serializers.ModelSerializer):
+    label = serializers.SerializerMethodField()
+
+    def get_label(self, obj):
+        return obj.__str__()
+
+    class Meta:
+        model = Observation
+        fields = ('id', 'label', 'project', 'type', 'observer', 'site', 'kv')
+
+
+class Obs2Serializer(serializers.ModelSerializer):
+
     class Meta:
         model = Observation
         fields = ('__all__')
@@ -61,20 +73,28 @@ class ObsGeoSerializer(GeoFeatureModelSerializer):
         read_only=True,
     )
     # get site name from Site model
-    sitename = serializers.ReadOnlyField(
+    Site = serializers.ReadOnlyField(
         source='site.name',
     )
-    observer = serializers.ReadOnlyField(
-        source='observer.first_name')
+    Label = serializers.SerializerMethodField()
 
-    projectname = serializers.ReadOnlyField(
+    def get_Label(self, obj):
+        return obj.__str__()
+
+    Observer = serializers.ReadOnlyField(
+        source='observer.full_name')
+
+    Project = serializers.ReadOnlyField(
         source='project.name',
+    )
+    ObservationType = serializers.ReadOnlyField(
+        source='type.name',
     )
 
     class Meta:
         model = Observation
         geo_field = 'geometry'  # required for this serializer
-        exclude = ('parentobs',)
+        exclude = ('parentobs', 'observer', 'type', 'site', 'project')
 
     # this includes the JSON field into the 'properties' dictionary of the geojson
     def to_representation(self, obj):
@@ -109,6 +129,10 @@ class SiteSerializer(GeoFeatureModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
+    ProjectCoordinator = serializers.ReadOnlyField(
+        source='project.project_coordinator.full_name'
+    )
+
     class Meta:
         model = Project
         fields = ('__all__')
@@ -152,6 +176,24 @@ class UserStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserStatus
         fields = ('id', 'user', 'user_status', 'project')
+
+
+class AuthUserSerializer(serializers.ModelSerializer):
+    user_projects = UserStatusSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'email', 'full_name', 'user_location',
+                  'default_project', 'user_projects')
+
+    # def get_user_projects(self, obj):
+    #     request = self.context['request']
+    #     queryset = UserStatus.objects.all()
+    #     if request:
+    #         queryset = filter(queryset, project_user=request.user)
+
+    #     return UserStatusSerializer(queryset, many=True).data
+
 
 # NOT USED
 

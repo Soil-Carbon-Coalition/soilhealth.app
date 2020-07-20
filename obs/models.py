@@ -104,7 +104,7 @@ class Observation(models.Model):
     kv = JSONField(null=True, blank=True)
 
     def __str__(self):
-        return 'Obs. created on %s for %s' % (self.entered.date(), self.site)
+        return '%s %s' % (self.type.name, self.entered.date())
 
     def get_absolute_url(self):
         return "/observations/%i/" % self.id

@@ -71,9 +71,9 @@ class CustomUser(AbstractUser):
 class UserStatus(models.Model):
 
     project = models.ForeignKey(
-        Project, blank=False, null=False, on_delete=models.CASCADE, related_name='user_project')
+        Project, blank=False, null=False, on_delete=models.CASCADE, related_name='project_user')
     user = models.ForeignKey(
-        CustomUser, blank=False, null=False, on_delete=models.CASCADE, related_name='project_user')
+        CustomUser, blank=False, null=False, on_delete=models.CASCADE, related_name='user_projects')
     APPRENTICE = 'AP'
     OBSERVER = 'OB'
     COORDINATOR = 'CO'

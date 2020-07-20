@@ -1,3 +1,4 @@
+from django.contrib.sessions.models import Session
 from django.contrib import admin
 from django.contrib.gis import admin
 # from django.contrib.sites import Site as AuthSite
@@ -8,7 +9,7 @@ from django.contrib.postgres import fields
 # from django_json_widget.widgets import JSONEditorWidget
 from django.contrib.auth.models import Group
 
-admin.site.unregister(Group)
+# admin.site.unregister(Group)
 
 
 admin.site.site_header = "SOILHEALTH.APP admin dashboard"
@@ -19,6 +20,15 @@ admin.site.register(RasterLayer)
 admin.site.register(VectorLayer)
 admin.site.register(PointSite, LeafletGeoAdmin)
 # admin.site.unregister(AuthSite)
+
+
+class SessionAdmin(admin.ModelAdmin):
+    def _session_data(self, obj):
+        return obj.get_decoded()
+    list_display = ['session_key', '_session_data', 'expire_date']
+
+
+admin.site.register(Session, SessionAdmin)
 
 
 @admin.register(Map)

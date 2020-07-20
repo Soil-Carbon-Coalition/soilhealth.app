@@ -6,7 +6,7 @@ from users.models import CustomUser, UserStatus
 from rest_framework import viewsets, status, permissions, generics, reverse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import SiteSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, ResourceSerializer, UserStatusSerializer, LoginSerializer
+from .serializers import SiteSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, ResourceSerializer, UserStatusSerializer, LoginSerializer, AuthUserSerializer
 from rest_framework.parsers import FileUploadParser
 from rest_framework.views import APIView
 from .serializers import FileSerializer
@@ -69,9 +69,9 @@ class MapViewSet(viewsets.ModelViewSet):
     serializer_class = MapSerializer
 
 
-class CurrentUserView(APIView):
+class AuthUserView(APIView):
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        serializer = AuthUserSerializer(request.user)
         return Response(serializer.data)
 
 
@@ -86,7 +86,7 @@ class ObservationViewSet(viewsets.ModelViewSet):
     serializer_class = ObsGeoSerializer
 
     def get_serializer_class(self, *args, **kwargs):
-        if self.request.method in ('POST', 'PUT', 'PATCH'):  # put or patch
+        if self.request.method in ('POST', 'PUT', 'PATCH'):
             return ObsSerializer
         return self.serializer_class
 
