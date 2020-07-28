@@ -15,8 +15,9 @@ urlpatterns = [
     path('api/', include('api.urls')),
     # allows login at api root
     path('api-auth/', include('rest_framework.urls')),
-    # path('', include('frontend.urls')),
-    path('', TemplateView.as_view(template_name="index.html")),
+    path('', include('frontend.urls')),
+    # path('', TemplateView.as_view(template_name="index.html")),
+    # path('front/' '/frontend/index.html')
 
 ]
 
@@ -25,5 +26,5 @@ if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
         # this will enable serving images in debug mode by url
-        # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

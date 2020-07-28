@@ -1,10 +1,10 @@
 from django.db import models
 from django.conf import settings
 
-# this will be like a blog post, for a project
+# this will be like a blog post, for a project. Not tied to a particular site.
 
 
-class Resource(models.Model):
+class Post(models.Model):
     title = models.CharField(max_length=100, unique=False)
     link = models.URLField(blank=True, null=True)
     body = models.TextField(blank=True, null=True)
@@ -19,4 +19,3 @@ class Resource(models.Model):
 
     class Meta:
         ordering = ['-id']
-        verbose_name_plural = 'resources'

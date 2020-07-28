@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Resource
+from .models import Post
 
 
-@admin.register(Resource)
-class ResourceAdmin(admin.ModelAdmin):
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'entered')
     list_filter = ('author', 'project')
     list_select_related = ('project',)

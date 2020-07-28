@@ -1,13 +1,18 @@
-from obs.models import Site, Observation, Project
+from obs.models import Site, Observation, Project, ObservationType
 from obs.filters import filter_site_observations
 from maps.models import Map, RasterLayer, VectorLayer
 from users.models import CustomUser, UserStatus
-from resources.models import Resource
+from posts.models import Post
 from upload.models import File
 from rest_framework import serializers
 from django.db.models.functions import Length
 # this one formats as geojson:
 from rest_framework_gis.serializers import GeoFeatureModelSerializer, GeoModelSerializer
+from django.core.files.uploadedfile import UploadedFile
+from django.core.files.storage import default_storage
+# from wq.db.rest.serializers import ModelSerializer, GeometryField
+from html_json_forms import parse_json_form
+import json
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -56,6 +61,13 @@ class ObsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Observation
         fields = ('id', 'label', 'project', 'type', 'observer', 'site', 'kv')
+
+    def to_internal_value(self, data):
+     # Save files and return paths
+        for key, value in data.items():
+            if isinstance(value, UploadedFile):
+                path = 'observations/' + value.name
+                data[key] = default_storage.save(path, value)
 
 
 class Obs2Serializer(serializers.ModelSerializer):
@@ -160,9 +172,9 @@ class MapSerializer(serializers.ModelSerializer):
         fields = ('__all__')
 
 
-class ResourceSerializer(serializers.ModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Resource
+        model = Post
         fields = ('__all__')
 
 
@@ -173,9 +185,13 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserStatusSerializer(serializers.ModelSerializer):
+    user_name = serializers.ReadOnlyField(source='user.full_name')
+    project_name = serializers.ReadOnlyField(source='project.name')
+
     class Meta:
         model = UserStatus
-        fields = ('id', 'user', 'user_status', 'project')
+        fields = ('id', 'user', 'user_name',
+                  'user_status', 'project', 'project_name')
 
 
 class AuthUserSerializer(serializers.ModelSerializer):
@@ -226,10 +242,27 @@ class RegistrationSerializer(serializers.ModelSerializer):
         newuser.save()
         return newuser
 
-# NOT USED
-
 
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('id', 'email', 'password')
+
+
+class CurrentUserDefault(serializers.CurrentUserDefault):
+    def __call__(self):
+        user = super().__call__()
+        return user.pk
+
+
+class ObservationTypeSerializer(serializers.ModelSerializer):
+    author_id = serializers.HiddenField(
+        default=CurrentUserDefault()
+    )
+    icon = serializers.ImageField(
+        required=False,
+    )
+
+    class Meta:
+        model = ObservationType
+        fields = ('__all__')

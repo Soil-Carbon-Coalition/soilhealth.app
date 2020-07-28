@@ -11,8 +11,9 @@ router.register(r'observations', views.ObservationViewSet)
 router.register(r'sites', views.SiteViewSet)
 router.register(r'maps', views.MapViewSet)
 router.register(r'users', views.UserViewSet)
-router.register(r'resources', views.ResourceViewSet)
+router.register(r'posts', views.PostViewSet)
 router.register(r'status', views.UserStatusViewSet)
+router.register(r'observationtypes', views.ObservationTypeViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -24,7 +25,7 @@ urlpatterns = [
     # path('token', TokenObtainPairView.as_view()), # for JWT
     # path('token/refresh', TokenRefreshView.as_view()), # for JWT
     path('upload/', views.FileUploadView.as_view(), name='upload'),
-    path('auth_user/', views.AuthUserView.as_view(), name='auth_user'),
+    path('auth-user/', views.AuthUserView.as_view(), name='auth-user'),
 
 ]
 # Vincent uses this, but with default json renderer it's not needed perhaps

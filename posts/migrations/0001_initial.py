@@ -12,16 +12,16 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Resource',
+            name='Post',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=100)),
                 ('link', models.URLField(blank=True, null=True)),
                 ('body', models.TextField(blank=True, null=True)),
                 ('entered', models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'verbose_name_plural': 'resources',
                 'ordering': ['-id'],
             },
         ),

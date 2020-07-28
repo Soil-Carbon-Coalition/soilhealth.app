@@ -1,13 +1,14 @@
-from obs.models import Observation, Site, Project
+from obs.models import Observation, Site, Project, ObservationType
 from obs.filters import filter_site_observations
 from maps.models import RasterLayer, VectorLayer, Map
-from resources.models import Resource
+from posts.models import Post
 from users.models import CustomUser, UserStatus
 from rest_framework import viewsets, status, permissions, generics, reverse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import SiteSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, ResourceSerializer, UserStatusSerializer, LoginSerializer, AuthUserSerializer
-from rest_framework.parsers import FileUploadParser
+from .serializers import LoginSerializer, SiteSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, PostSerializer, UserStatusSerializer, ObservationTypeSerializer, AuthUserSerializer
+from rest_framework.parsers import FileUploadParser, MultiPartParser, JSONParser
+# from .utils import MultipartJsonParser
 from rest_framework.views import APIView
 from .serializers import FileSerializer
 # FILTERS
@@ -33,13 +34,20 @@ class SiteViewSet(viewsets.ReadOnlyModelViewSet):
         return queryset
 
 
+# class FileUploadView(APIView):
+#     parser_classes = (FileUploadParser,)
+
+#     def post(self, request, filename, format=None):
+#         file_obj = request.FILES['file']
+#         # do some stuff with uploaded file
+#         return Response(status=204)
+
 class FileUploadView(APIView):
-    parser_class = (FileUploadParser,)
+    parser_classes = (FileUploadParser, MultiPartParser)
 
     def post(self, request, *args, **kwargs):
 
         file_serializer = FileSerializer(data=request.data)
-
         if file_serializer.is_valid():
             file_serializer.save()
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
@@ -59,9 +67,9 @@ class ProjectViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
 
 
-class ResourceViewSet(viewsets.ModelViewSet):
-    queryset = Resource.objects.all().order_by('-pk')
-    serializer_class = ResourceSerializer
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all().order_by('-pk')
+    serializer_class = PostSerializer
 
 
 class MapViewSet(viewsets.ModelViewSet):
@@ -71,8 +79,17 @@ class MapViewSet(viewsets.ModelViewSet):
 
 class AuthUserView(APIView):
     def get(self, request):
+        if request.user.is_anonymous:
+            content = {'message': 'Unauthorized'}
+            response = JsonResponse(content, status=401)
+            return response
+
         serializer = AuthUserSerializer(request.user)
         return Response(serializer.data)
+        # else:
+        #     content = {'message': 'Unauthenticated'}
+        #     response = JsonResponse(content, status=401)
+        #     return response
 
 
 class UserStatusViewSet(viewsets.ModelViewSet):
@@ -85,10 +102,18 @@ class ObservationViewSet(viewsets.ModelViewSet):
         'site').select_related('observer').select_related('type').select_related('project').order_by('pk')
     serializer_class = ObsGeoSerializer
 
+    # @action(detail=True, methods=['post', 'put'], serializer_class=FileUploadSerializer,
+    #         parser_classes=[MultiPartParser],)
+
     def get_serializer_class(self, *args, **kwargs):
         if self.request.method in ('POST', 'PUT', 'PATCH'):
             return ObsSerializer
         return self.serializer_class
+
+
+class ObservationTypeViewSet(viewsets.ModelViewSet):
+    queryset = ObservationType.objects.all().order_by('pk')
+    serializer_class = ObservationTypeSerializer
 
 
 # class MyObsList(generics.ListAPIView):

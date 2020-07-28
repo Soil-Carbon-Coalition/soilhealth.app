@@ -10,20 +10,22 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('resources', '0001_initial'),
+        ('posts', '0001_initial'),
         ('obs', '0002_auto_20200708_1849'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='resource',
+            model_name='post',
             name='author',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
-            model_name='resource',
+            model_name='post',
             name='project',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='obs.Project'),
+            field=models.ForeignKey(
+                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='obs.Project'),
         ),
     ]
