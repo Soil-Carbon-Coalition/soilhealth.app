@@ -1,0 +1,25 @@
+{
+  myForm: '<div class="container">
+    <form @submit="onSubmit" @reset="onReset">
+        <div class="form-group" label="Photo caption" label-for="input-1" description="With a simple caption, you can match a repeat photo with this">
+            <input id="input-1" type="text" v-model="kv.caption" placeholder="photo caption" required="true" />
+        </div>
+        <div class="form-group" label="Photo:" label-for="file-input" description="take picture or upload picture from file">
+            <input type="file" id="file-input" @change="onFileSelected" />
+        </div>
+        <div class="form-group" label="description" label-for="input-3">
+            <textarea id="input-3" v-model="kv.description" description="Why you took this photo, what are you trying to show" />
+        </div>
+        <div class="form-group" label="date" label-for="input-4" description="photo date">
+            <input type="date" id="input-4" v-model="kv.date" class="mb-2" />
+        </div>
+        <button type="submit" class="m-3">Submit</button>
+        <button type="reset" class="m-3">Reset</button>
+    </form>
+</div>',
+
+myScript: "var onFileSelected = function(event) {
+                this.selectedFile = event.target.files[0]
+                console.log(this.selectedFile)
+    }"
+    

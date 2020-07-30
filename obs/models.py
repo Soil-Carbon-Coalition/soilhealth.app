@@ -48,6 +48,14 @@ class PointSite(models.Model):
     class Meta:
         ordering = ['-pk']
 
+# this could be a replacement for ObservationType
+# class ObsType(models.Model):
+#     name = models.CharField(max_length=30)
+#     icon = models.ImageField(upload_to='icons')
+#     description = models.TextField()
+#     author = models.ForeignKey(
+#         'users.CustomUser', null=True, blank=True, on_delete=models.SET_NULL)
+
 
 class ObservationType(models.Model):
     name = models.CharField(max_length=255)
@@ -98,10 +106,8 @@ class Project(models.Model):
     geography = models.CharField(max_length=200, blank=True)
     description = models.TextField(max_length=2000, blank=True)
 
-    project_coordinator = models.ForeignKey('users.CustomUser',
-                                            null=True, blank=True,
-                                            on_delete=models.SET_NULL)
     members_only = models.BooleanField(default=False)
+    obs_types = models.ManyToManyField(ObservationType)
 
     def __str__(self):
         return self.name
