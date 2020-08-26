@@ -7,8 +7,8 @@ from rest_framework import viewsets, status, permissions, generics, reverse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import LoginSerializer, SiteSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, PostSerializer, UserStatusSerializer, ObservationTypeSerializer, AuthUserSerializer
-from rest_framework.parsers import FileUploadParser, MultiPartParser, JSONParser
-# from .utils import MultipartJsonParser
+from rest_framework.parsers import FileUploadParser, MultiPartParser, JSONParser, FormParser
+from .utils import MultipartJsonParser
 from rest_framework.views import APIView
 from .serializers import FileSerializer
 # FILTERS
@@ -43,7 +43,7 @@ class SiteViewSet(viewsets.ReadOnlyModelViewSet):
 #         return Response(status=204)
 
 class FileUploadView(APIView):
-    parser_classes = (FileUploadParser, MultiPartParser)
+    parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request, *args, **kwargs):
 
@@ -97,13 +97,26 @@ class UserStatusViewSet(viewsets.ModelViewSet):
     serializer_class = UserStatusSerializer
 
 
+class ObsPostView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+
+    def post(self, request, *args, **kwargs):
+
+        obs_serializer = ObsSerializer(data=request.data)
+        if obs_serializer.is_valid():
+            obs_serializer.save()
+            return Response(obs_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(obs_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class ObservationViewSet(viewsets.ModelViewSet):
     queryset = Observation.objects.all().select_related(
-        'site').select_related('observer').select_related('type').select_related('project').order_by('pk')
+        'site').select_related('observer').select_related('obs_type').select_related('project').order_by('pk')
     serializer_class = ObsGeoSerializer
 
     # @action(detail=True, methods=['post', 'put'], serializer_class=FileUploadSerializer,
-    #         parser_classes=[MultiPartParser],)
+    #parser_classes = (MultiPartParser, FormParser)
 
     def get_serializer_class(self, *args, **kwargs):
         if self.request.method in ('POST', 'PUT', 'PATCH'):

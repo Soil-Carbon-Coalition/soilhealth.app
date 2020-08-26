@@ -31,23 +31,6 @@ class Site(models.Model):
 # NOT USED
 
 
-class PointSite(models.Model):
-    name = models.CharField(max_length=100, unique=False)
-    point = PointField()
-
-    @property
-    def lat_lng(self):
-        return list(getattr(self.point, 'coords', [])[::-1])
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return "/pointsites/%i/" % self.id
-
-    class Meta:
-        ordering = ['-pk']
-
 # this could be a replacement for ObservationType
 # class ObsType(models.Model):
 #     name = models.CharField(max_length=30)
@@ -59,6 +42,8 @@ class PointSite(models.Model):
 
 class ObservationType(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.CharField(max_length=30, null=True, blank=True,
+                            help_text='No spaces, will be the name of the Vue component')
     icon = models.ImageField(upload_to='forms')
     description = models.TextField()
     author = models.ForeignKey(
@@ -107,7 +92,6 @@ class Project(models.Model):
     description = models.TextField(max_length=2000, blank=True)
 
     members_only = models.BooleanField(default=False)
-    obs_types = models.ManyToManyField(ObservationType)
 
     def __str__(self):
         return self.name
@@ -122,14 +106,10 @@ class Observation(models.Model):
                                  on_delete=models.SET_NULL)
     entered = models.DateTimeField(auto_now_add=True)
     # parentobs will be discarded in production
-    parentobs = models.ForeignKey('self',
-                                  null=True,
-                                  blank=True,
-                                  related_name='childobs',
-                                  on_delete=models.CASCADE)
+
     # 'type' will be renamed 'obs_type' in production
-    type = models.ForeignKey(ObservationType, null=True, related_name='type',
-                             on_delete=models.SET_NULL)
+    obs_type = models.ForeignKey(ObservationType, null=True, related_name='obs_type',
+                                 on_delete=models.SET_NULL)
     site = models.ForeignKey(Site, related_name='site_observations',
                              on_delete=models.CASCADE)
     project = models.ForeignKey(
@@ -137,23 +117,17 @@ class Observation(models.Model):
     kv = JSONField(null=True, blank=True)
 
     def __str__(self):
-        return '%s %s' % (self.type.name, self.entered.date())
+        return '%s %s' % (self.obs_type, self.entered.date())
 
     def get_absolute_url(self):
         return "/observations/%i/" % self.id
-
-    def get_ancestors(self):  # this is a recursive function!!!!
-        if self.parentobs is None:
-            return Observation.objects.none()
-        return Observation.objects.filter(
-            pk=self.parentobs.pk) | self.parentobs.get_ancestors()
 
     class Meta:
         ordering = ['-id']
         verbose_name_plural = 'observations'
 
 
-class Comment(models.Model):
+class ObsComment(models.Model):
     author = models.ForeignKey('users.CustomUser',
                                null=True, blank=True, related_name='comment_author',
                                on_delete=models.CASCADE)

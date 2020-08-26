@@ -4,33 +4,41 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Frontend Vue</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
-            integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-        
-        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
-            <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
         <script src="https://unpkg.com/vue"></script>
         <script src="https://unpkg.com/vuex"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
-<div id="app" class="pure-g">
-    <div class="pure-u-1-2"    
+<div id="app" class="container">
+    <div>
         <h1>[[ heading ]]</h1>
-        <p>[[paragraph]]</p><br>
-
-        
-        <button @click="this.logout">Log out</button>
+        <h3 v-if="authUser"><span style="color: green">AUTHORIZED</span></h3>
+        <h3 v-if="!authUser"><span style="color: red">NOT AUTHORIZED</span></h3>
     </div>
-    <div class="pure-u-1-2" v-if="!loading">
-            <h2>User projects</h2> 
-            <p v-for="item in user.user_projects" v-bind:key="item.id"><b>[[ item.project_name ]]:</b> [[ item.user_status ]]</p></div>
-
-
+    <div v-if="!loading">
+        <h3>Projects for [[ authUser.full_name ]]</h3> 
+        <p v-for="item in authUser.user_projects" v-bind:key="item.id"><b>[[ item.project_name ]]:</b> [[ item.user_status ]]</p>
 
         <h4>Default Project: [[ project ]]</h4>
-        <p>CSRF: <span style="color:blueviolet">[[ csrf ]]</span></p>
+        <p>CSRF: <span style="color: blueviolet">[[ csrf ]]</span></p>
+        <button @click="getData">Get data</button>
+        <p>My data: [[ mydata ]]</p>
+
+    </div>
+    <div>
+        <form @submit.prevent="postObs">
+            File 1<input type="file" @change="selectPic1"><br>
+            File 2<input type="file" @change="selectPic2"><br>
+            Caption <input type="text" v-model="caption"><br>
+            Number <input type="number" v-model="number"><br>
+            Date <input type="date" v-model="date"><br>
+            <p>Are you sure etc.</p>
+            <button class="btn btn-dark btn-lg">submit</button>
+        </form>
+     <button @click="check" class="btn btn-info btn-lg">check refs</button>
     </div>
 </div>
 
@@ -94,9 +102,9 @@
             },
         },
         actions: {
-            setAuthUser({ commit }, user) {
-                commit("SET_AUTH_USER", user);
-                commit("SET_PROJECT", user.default_project);
+            setAuthUser({ commit }, authUser) {
+                commit("SET_AUTH_USER", authUser);
+                commit("SET_PROJECT", authUser.default_project);
             },
             setProject({ commit }, project) {
                 commit("SET_PROJECT", project);
@@ -125,49 +133,123 @@ new Vue({
   data() {
     return {
       loading: true,
+      pic1: null,
+      pic2: null,
+      number: null,
+      caption: '',
+      date: null,
       heading: "Vue/Django experiments",
-      paragraph: "No hot reloading, and use [[]] template interpolator",
+      mydata: '',
       
         }
     },
   computed: {
-    user() {
+      
+    authUser() {
       return store.getters.authUser;
     },
-
     csrf() {
       return Cookies.get("csrftoken");
     },
     project() {
       return store.getters.project;
+    },
+    site(){
+        return store.getters.site
     }
   },
   methods: {
-    getUser() {
-      fetch("/api/auth-user")
-        .then(function(response) {
-          // first then()
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Something went wrong.");
+    getAuthUser() {
+      axios.get("/api/auth-user/")
+        .then(response => {
+          store.dispatch("setAuthUser", response.data);
+          this.loading=false
         })
-        .then(function(data) {
-          store.dispatch("setAuthUser", data); // second
-        })
-        .catch(function(error) {
-          // catch
+        .catch(error => {
           console.log("Request failed", error);
           this.loading=false
         })
-        .finally((this.loading = false));
     },
-    logout() {
-      store.dispatch("logout");
-    }
+    getData(){
+        axios.get('api/projects/7').then(response => {
+            this.mydata = JSON.stringify(response.data)
+          })
+    },
+    postObs(){
+        let fd = new FormData
+        fd.append('pic1', this.pic1)
+        fd.append('pic2', this.pic2)
+        fd.append('observer', this.authUser.id)
+        fd.append('site', 1071)
+        fd.append('obs_type', 31)
+        fd.append('project', 1)
+        fd.append('caption', this.caption)
+        fd.append('number', this.number)
+        fd.append('date', this.date)
+        axios({
+            method: 'POST',
+            url: 'api/observations/',
+            headers: {
+                "X-CSRFToken": this.csrf,
+                },
+            data: fd
+          })
+        .then(data => {
+                console.log(data)
+            })
+        .catch(error => {
+           console.error(error)
+        })
+    },
+    check(){
+        
+        console.log(this.fd)
+
+    },
+    postProject(){
+        axios({
+            method: 'POST',
+            url: 'api/projects/',
+            headers: {"X-CSRFToken": this.csrf},
+            data: this.proj
+          })
+        .then(data => {
+                console.log(data)
+            })
+        .catch(error => {
+           console.error(error)
+        })
+    },
+    onFileSelected (event) {
+        this.FILE = event.target.files[0]
+        console.log(this.FILE)
+    },
+    selectPic1 (event) {
+        this.pic1 = event.target.files[0]
+    },
+    selectPic2 (event) {
+        this.pic2 = event.target.files[0]
+    },
+    onSubmit() {
+        console.log('onSubmit fired')
+        const formData = new FormData()
+        formData.append('file', this.FILE)
+        axios({
+            method: 'POST',
+            url: 'api/upload/',
+            headers: {"X-CSRFToken": this.csrf},
+            data: formData
+          })
+        .then(data => {
+                console.log(data)
+            })
+        .catch(error => {
+           console.error(error)
+        })
+    }  
   },
   mounted() {
-      this.getUser()
+      this.getAuthUser()
   }
 });
     

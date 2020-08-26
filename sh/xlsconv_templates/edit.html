@@ -1,0 +1,19 @@
+{{=[[ ]]=}}
+[[#fields]]
+[[>fields/html_field]]
+[[#wq:nested]]
+{{#[[plural_name]]}}
+<li data-role="list-divider" class="section-[[plural_name]]">[[label]]</li>
+[[#children]]
+[[>fields/html_field]]
+[[/children]]
+{{/[[plural_name]]}}
+[[#wq:many]]
+<li>
+  <button type="button" data-atlas-action="addobs" data-atlas-section="[[plural_name]]">
+    Add [[label]]
+  </button>
+</li>
+[[/wq:many]]
+[[/wq:nested]]
+[[/fields]]

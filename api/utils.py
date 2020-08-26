@@ -17,6 +17,16 @@ class MultipartJsonParser(parsers.MultiPartParser):
         )
         data = {}
 
+        # for case 2
+        # find the data field and parse it
+        data = json.loads(result.data["data"])
+
+        qdict = QueryDict('', mutable=True)
+        qdict.update(data)
+        return parsers.DataAndFiles(qdict, result.files)
+
+
+'''
         # for case1 with nested serializers
         # parse each field with json
         for key, value in result.data.items():
@@ -30,11 +40,4 @@ class MultipartJsonParser(parsers.MultiPartParser):
                     data[key] = value
             else:
                 data[key] = value
-
-        # for case 2
-        # find the data field and parse it
-        data = json.loads(result.data["data"])
-
-        qdict = QueryDict('', mutable=True)
-        qdict.update(data)
-        return parsers.DataAndFiles(qdict, result.files)
+'''

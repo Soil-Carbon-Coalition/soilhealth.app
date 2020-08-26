@@ -21,11 +21,12 @@ urlpatterns = [
     path('', include(router.urls)),
     # path('api-auth/', include('rest_framework.urls',
     #   namespace='rest_framework')),
-    path('register/', views.registration_view, name='register'),
+    # path('register/', views.registration_view, name='register'),
     # path('token', TokenObtainPairView.as_view()), # for JWT
     # path('token/refresh', TokenRefreshView.as_view()), # for JWT
     path('upload/', views.FileUploadView.as_view(), name='upload'),
     path('auth-user/', views.AuthUserView.as_view(), name='auth-user'),
+    path('obs-post/', views.ObsPostView.as_view(), name='obs-post'),
 
 ]
 # Vincent uses this, but with default json renderer it's not needed perhaps

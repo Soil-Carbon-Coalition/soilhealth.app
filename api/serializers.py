@@ -10,7 +10,7 @@ from django.db.models.functions import Length
 from rest_framework_gis.serializers import GeoFeatureModelSerializer, GeoModelSerializer
 from django.core.files.uploadedfile import UploadedFile
 from django.core.files.storage import default_storage
-# from wq.db.rest.serializers import ModelSerializer, GeometryField
+# used in atlasbiowork obs serializer
 from html_json_forms import parse_json_form
 import json
 
@@ -40,7 +40,7 @@ class GeometryField(serializers.Field):
         geom = GEOSGeometry(value)
         srid = getattr(settings, 'SRID', 4326)
 
-        if 'crs' in value and value['crs'].get('type', None) == 'name':
+        if 'crs' in value and value['crs'].get('obs_type', None) == 'name':
             name = value['crs']['properties']['name']
             if name.startswith('urn:ogc:def:crs:EPSG::'):
                 geom.srid = int(name.replace('urn:ogc:def:crs:EPSG::', ''))
@@ -53,6 +53,12 @@ class GeometryField(serializers.Field):
 
 
 class ObsSerializer(serializers.ModelSerializer):
+    '''
+    to post data to this serializer, use a FormData object, and append
+    fields without any nesting. All fields not in the fixed_fields set 
+    will be nested under the kv JSON field, including the file uploads 
+
+    '''
     label = serializers.SerializerMethodField()
 
     def get_label(self, obj):
@@ -60,24 +66,33 @@ class ObsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Observation
-        fields = ('id', 'label', 'project', 'type', 'observer', 'site', 'kv')
+        fields = ('id', 'label', 'project',
+                  'obs_type', 'observer', 'site', 'kv')
 
     def to_internal_value(self, data):
-     # Save files and return paths
+        # Save files and return paths
         for key, value in data.items():
             if isinstance(value, UploadedFile):
-                path = 'observations/' + value.name
+                path = 'obs/' + data['project'] + '/' + value.name
                 data[key] = default_storage.save(path, value)
 
+        # Convert nested keys to JSON structure
+        data = parse_json_form(data)
+        fixed_fields = ['observer', 'site', 'project', 'obs_type', 'kv']
 
-class Obs2Serializer(serializers.ModelSerializer):
+        # Extract JSON data into 'kv' field, leaving relational and
+        # built-in fields in place.
+        data.setdefault('kv', {})
+        for key in list(data.keys()):
+            if key not in fixed_fields:
+                data['kv'][key] = data.pop(key)
 
-    class Meta:
-        model = Observation
-        fields = ('__all__')
+        return super().to_internal_value(data)
 
 
-# THIS ONE YIELDS GEOJSON!!
+# THIS ONE YIELDS GEOJSON. USE FOR GET but not POST
+
+
 class ObsGeoSerializer(GeoFeatureModelSerializer):
     # get and format geometry field from Site model
     geometry = GeometryField(
@@ -100,13 +115,13 @@ class ObsGeoSerializer(GeoFeatureModelSerializer):
         source='project.name',
     )
     ObservationType = serializers.ReadOnlyField(
-        source='type.name',
+        source='obs_type.name',
     )
 
     class Meta:
         model = Observation
         geo_field = 'geometry'  # required for this serializer
-        exclude = ('parentobs', 'observer', 'type', 'site', 'project')
+        exclude = ('observer', 'obs_type', 'site', 'project')
 
     # this includes the JSON field into the 'properties' dictionary of the geojson
     def to_representation(self, obj):
@@ -117,7 +132,11 @@ class ObsGeoSerializer(GeoFeatureModelSerializer):
 
 
 class SiteSerializer(GeoFeatureModelSerializer):
-    # 'site_observations' is a related name in Observation model 'site' field
+    '''
+    'site_observations' is a related name in Observation model 'site' field
+    This serializer is adapted for searching the nested site_observations array and returning
+    geojson features for sites with observations matching the search terms.
+    '''
     site_observations = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
@@ -173,6 +192,17 @@ class MapSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source='author.full_name')
+    project = serializers.ReadOnlyField(source='project.name')
+    label = serializers.SerializerMethodField()
+    date = serializers.SerializerMethodField()
+
+    def get_date(self, obj):
+        return obj.entered.date()
+
+    def get_label(self, obj):
+        return obj.__str__()
+
     class Meta:
         model = Post
         fields = ('__all__')
