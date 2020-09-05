@@ -131,6 +131,13 @@ class ObsGeoSerializer(GeoFeatureModelSerializer):
         return data
 
 
+class SitePostSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        model = Site
+        geo_field = "geometry"
+        fields = ('__all__')
+
+
 class SiteSerializer(GeoFeatureModelSerializer):
     '''
     'site_observations' is a related name in Observation model 'site' field
@@ -160,9 +167,10 @@ class SiteSerializer(GeoFeatureModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    ProjectCoordinator = serializers.ReadOnlyField(
-        source='project.project_coordinator.full_name'
-    )
+    # NEED:
+    # project_coordinators
+    # obs_types
+    # posts
 
     class Meta:
         model = Project

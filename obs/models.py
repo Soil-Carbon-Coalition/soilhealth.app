@@ -26,57 +26,32 @@ class Site(models.Model):
         ordering = ['-pk']
         verbose_name_plural = 'sites'
 
-# this a possible PointSite class
-
-# NOT USED
-
-
-# this could be a replacement for ObservationType
-# class ObsType(models.Model):
-#     name = models.CharField(max_length=30)
-#     icon = models.ImageField(upload_to='icons')
-#     description = models.TextField()
-#     author = models.ForeignKey(
-#         'users.CustomUser', null=True, blank=True, on_delete=models.SET_NULL)
-
 
 class ObservationType(models.Model):
     name = models.CharField(max_length=255)
     slug = models.CharField(max_length=30, null=True, blank=True,
-                            help_text='No spaces, will be the name of the Vue component')
+                            help_text='No spaces, will be the PascalCase name of the Vue component, such as PastureMove')
     icon = models.ImageField(upload_to='forms')
-    description = models.TextField()
+    description = models.TextField(
+        max_length=200, null=True, blank=False, help_text='briefly describe purpose and function')
     author = models.ForeignKey(
         'users.CustomUser', null=True, blank=True, on_delete=models.SET_NULL)
     xlsform = models.FileField(upload_to='forms', null=True, blank=True)
     form_json = JSONField(null=True, blank=True)
-    script = models.TextField(null=True, blank=True)
-    edit_html = models.TextField(null=True, blank=True)
-    detail_html = models.TextField(null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        if self.xlsform:
-            try:
-                self.form_json = xlsconv.parse_xls(self.xlsform)
-            except Exception as e:
-                self.edit_html = "Error parsing form: %s" % e
-                self.detail_html = "Error parsing form: %s" % e
-            else:
-                if not self.edit_html:
-                    self.edit_html = self.generate_html('edit')
-                if not self.detail_html:
-                    self.detail_html = self.generate_html('detail')
-        super().save(*args, **kwargs)
-
-    def generate_html(self, template):
-        try:
-            html = xlsconv.render(
-                xlsconv.html_context(self.form_json),
-                XLSCONV_TEMPLATE % template,
-            )
-        except Exception as e:
-            html = "Error generating HTML: %s" % e
-        return html
+    # def save(self, *args, **kwargs):
+    #     if self.xlsform:
+    #         try:
+    #             self.form_json = xlsconv.parse_xls(self.xlsform)
+    #         except Exception as e:
+    #             self.edit_html = "Error parsing form: %s" % e
+    #             self.detail_html = "Error parsing form: %s" % e
+    #         else:
+    #             if not self.edit_html:
+    #                 self.edit_html = self.generate_html('edit')
+    #             if not self.detail_html:
+    #                 self.detail_html = self.generate_html('detail')
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -90,8 +65,11 @@ class Project(models.Model):
                             help_text='up to 20 characters')
     geography = models.CharField(max_length=200, blank=True)
     description = models.TextField(max_length=2000, blank=True)
-
-    members_only = models.BooleanField(default=False)
+    guidelines = models.TextField(
+        max_length=2000, blank=True, help_text='Guidelines for submitting observations, data, and posts')
+    members_only = models.BooleanField(
+        default=True, help_text='In order to post observations, you must have joined and been accepted into that project. For members-only projects, only members can view the data.')
+    obs_types = models.ManyToManyField(ObservationType, blank=True)
 
     def __str__(self):
         return self.name
@@ -135,4 +113,4 @@ class ObsComment(models.Model):
                                     on_delete=models.CASCADE)
     entered = models.DateTimeField(auto_now_add=True)
     subject = models.CharField(max_length=100, blank=True)
-    body = models.TextField(blank=True)
+    body = models.TextField(max_length=2000, blank=True)

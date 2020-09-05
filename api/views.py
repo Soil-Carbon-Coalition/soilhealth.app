@@ -6,7 +6,7 @@ from users.models import CustomUser, UserStatus
 from rest_framework import viewsets, status, permissions, generics, reverse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import LoginSerializer, SiteSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, PostSerializer, UserStatusSerializer, ObservationTypeSerializer, AuthUserSerializer
+from .serializers import LoginSerializer, SiteSerializer, SitePostSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, PostSerializer, UserStatusSerializer, ObservationTypeSerializer, AuthUserSerializer
 from rest_framework.parsers import FileUploadParser, MultiPartParser, JSONParser, FormParser
 from .utils import MultipartJsonParser
 from rest_framework.views import APIView
@@ -20,7 +20,12 @@ from .serializers import FileSerializer
 # import django_filters
 
 
-class SiteViewSet(viewsets.ReadOnlyModelViewSet):
+# class SiteViewSet(viewsets.ModelViewSet):
+#     queryset = Site.objects.all().order_by('-pk')
+#     serializer_class = SitePostSerializer
+
+# class SiteViewSet(viewsets.ReadOnlyModelViewSet):
+class SiteViewSet(viewsets.ModelViewSet):
     queryset = Site.objects.all().order_by(
         'pk').distinct('pk')
     serializer_class = SiteSerializer
@@ -32,6 +37,11 @@ class SiteViewSet(viewsets.ReadOnlyModelViewSet):
 
         queryset = self.get_serializer_class().setup_eager_loading(queryset)
         return queryset
+
+    def get_serializer_class(self, *args, **kwargs):
+        if self.request.method in ('POST', 'PUT', 'PATCH'):
+            return SitePostSerializer
+        return self.serializer_class
 
 
 # class FileUploadView(APIView):
@@ -97,17 +107,30 @@ class UserStatusViewSet(viewsets.ModelViewSet):
     serializer_class = UserStatusSerializer
 
 
-class ObsPostView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
+# class ObsPostView(APIView):
+#     parser_classes = (MultiPartParser, FormParser)
 
-    def post(self, request, *args, **kwargs):
+#     def post(self, request, *args, **kwargs):
 
-        obs_serializer = ObsSerializer(data=request.data)
-        if obs_serializer.is_valid():
-            obs_serializer.save()
-            return Response(obs_serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(obs_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#         obs_serializer = ObsSerializer(data=request.data)
+#         if obs_serializer.is_valid():
+#             obs_serializer.save()
+#             return Response(obs_serializer.data, status=status.HTTP_201_CREATED)
+#         else:
+#             return Response(obs_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# class SitePostView(APIView):
+#     parser_classes = (MultiPartParser, FormParser)
+
+#     def post(self, request, *args, **kwargs):
+
+#         site_serializer = SitePostSerializer(data=request.data)
+#         if site_serializer.is_valid():
+#             site_serializer.save()
+#             return Response(site_serializer.data, status=status.HTTP_201_CREATED)
+#         else:
+#             return Response(site_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ObservationViewSet(viewsets.ModelViewSet):

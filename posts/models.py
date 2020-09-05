@@ -6,12 +6,11 @@ from django.conf import settings
 
 class Post(models.Model):
     title = models.CharField(max_length=100, unique=False)
-    link = models.URLField(blank=True, null=True)
     body = models.TextField(blank=True, null=True)
     author = models.ForeignKey(
         'users.CustomUser', null=True, blank=True, on_delete=models.SET_NULL)
     project = models.ForeignKey(
-        'obs.Project', null=True, blank=True, on_delete=models.CASCADE)
+        'obs.Project', null=True, blank=True, on_delete=models.SET_NULL)
     entered = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -23,7 +22,7 @@ class Post(models.Model):
 
 class PostComment(models.Model):
     subject = models.CharField(max_length=100, unique=False)
-    body = models.TextField(blank=True, null=True)
+    body = models.TextField(max_length=1000, blank=True, null=True)
     author = models.ForeignKey(
         'users.CustomUser', null=True, blank=True, on_delete=models.SET_NULL)
     post = models.ForeignKey(
@@ -31,7 +30,7 @@ class PostComment(models.Model):
     entered = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.subject
+        return '%s %s' % (self.subject, self.author)
 
     class Meta:
         ordering = ['-id']
