@@ -10,7 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         'users.CustomUser', null=True, blank=True, on_delete=models.SET_NULL)
     project = models.ForeignKey(
-        'obs.Project', null=True, blank=True, on_delete=models.SET_NULL)
+        'obs.Project', related_name='project_posts', null=True, blank=True, on_delete=models.SET_NULL)
     entered = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

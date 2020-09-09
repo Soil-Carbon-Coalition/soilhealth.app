@@ -61,12 +61,10 @@ class ObservationType(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=20, blank=True,
-                            help_text='up to 20 characters')
+    name = models.CharField(max_length=25, blank=True,
+                            help_text='25 characters max')
     geography = models.CharField(max_length=200, blank=True)
-    description = models.TextField(max_length=2000, blank=True)
-    guidelines = models.TextField(
-        max_length=2000, blank=True, help_text='Guidelines for submitting observations, data, and posts')
+    description = models.TextField(max_length=2000, blank=True, )
     members_only = models.BooleanField(
         default=True, help_text='In order to post observations, you must have joined and been accepted into that project. For members-only projects, only members can view the data.')
     obs_types = models.ManyToManyField(ObservationType, blank=True)
@@ -84,18 +82,18 @@ class Observation(models.Model):
                                  on_delete=models.SET_NULL)
     entered = models.DateTimeField(auto_now_add=True)
     # parentobs will be discarded in production
-
     # 'type' will be renamed 'obs_type' in production
     obs_type = models.ForeignKey(ObservationType, null=True, related_name='obs_type',
                                  on_delete=models.SET_NULL)
     site = models.ForeignKey(Site, related_name='site_observations',
                              on_delete=models.CASCADE)
     project = models.ForeignKey(
-        Project, related_name='project', null=True, blank=True, default=1, on_delete=models.CASCADE)
-    kv = JSONField(null=True, blank=True)
+        Project, related_name='project_observations', null=True, blank=True, default=1, on_delete=models.CASCADE)
+    # renamed from 'values'
+    kv = JSONField(null=True, blank=True, help_text='must be valid JSON')
 
     def __str__(self):
-        return '%s %s' % (self.obs_type, self.entered.date())
+        return '%s posted %s' % (self.obs_type, self.entered.date())
 
     def get_absolute_url(self):
         return "/observations/%i/" % self.id
@@ -114,3 +112,6 @@ class ObsComment(models.Model):
     entered = models.DateTimeField(auto_now_add=True)
     subject = models.CharField(max_length=100, blank=True)
     body = models.TextField(max_length=2000, blank=True)
+
+    def __str__(self):
+        return '%s posted %s by %s' % (self.subject, self.entered.date(), self.author)

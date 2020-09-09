@@ -6,11 +6,12 @@ from users.models import CustomUser, UserStatus
 from rest_framework import viewsets, status, permissions, generics, reverse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import LoginSerializer, SiteSerializer, SitePostSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, PostSerializer, UserStatusSerializer, ObservationTypeSerializer, AuthUserSerializer
+from .serializers import LoginSerializer, SiteSerializer, SitePostSerializer, ObsGeoSerializer, ObsSerializer, MapSerializer, ProjectSerializer, UserSerializer, RegistrationSerializer, PostSerializer, UserStatusSerializer, ObsTypeSerializer, AuthUserSerializer
 from rest_framework.parsers import FileUploadParser, MultiPartParser, JSONParser, FormParser
 from .utils import MultipartJsonParser
 from rest_framework.views import APIView
 from .serializers import FileSerializer
+from django.db.models import Count
 # FILTERS
 # from rest_framework import filters
 # from rest_framework.filters import SearchFilter, OrderingFilter
@@ -73,7 +74,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.all().order_by('-pk')
+
+    queryset = Project.objects.all().order_by(
+        '-pk').annotate(observations=Count('project_observations', distinct=True), posts=Count('project_posts', distinct=True))
     serializer_class = ProjectSerializer
 
 
@@ -149,7 +152,7 @@ class ObservationViewSet(viewsets.ModelViewSet):
 
 class ObservationTypeViewSet(viewsets.ModelViewSet):
     queryset = ObservationType.objects.all().order_by('pk')
-    serializer_class = ObservationTypeSerializer
+    serializer_class = ObsTypeSerializer
 
 
 # class MyObsList(generics.ListAPIView):

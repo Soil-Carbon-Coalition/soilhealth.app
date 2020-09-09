@@ -10,6 +10,7 @@ from django.db.models.functions import Length
 from rest_framework_gis.serializers import GeoFeatureModelSerializer, GeoModelSerializer
 from django.core.files.uploadedfile import UploadedFile
 from django.core.files.storage import default_storage
+
 # used in atlasbiowork obs serializer
 from html_json_forms import parse_json_form
 import json
@@ -166,15 +167,11 @@ class SiteSerializer(GeoFeatureModelSerializer):
         return ObsSerializer(queryset, many=True).data
 
 
-class ProjectSerializer(serializers.ModelSerializer):
-    # NEED:
-    # project_coordinators
-    # obs_types
-    # posts
+class ObsTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Project
-        fields = ('__all__')
+        model = ObservationType
+        fields = ('id', 'name', 'slug', 'icon', 'description')
 
 
 class RasterSerializer(serializers.ModelSerializer):
@@ -230,6 +227,17 @@ class UserStatusSerializer(serializers.ModelSerializer):
         model = UserStatus
         fields = ('id', 'user', 'user_name',
                   'user_status', 'project', 'project_name')
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    observations = serializers.IntegerField()
+    posts = serializers.IntegerField()
+    obs_types = ObsTypeSerializer(required=False, many=True)
+    user = UserStatusSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Project
+        fields = ('__all__')
 
 
 class AuthUserSerializer(serializers.ModelSerializer):
@@ -293,14 +301,14 @@ class CurrentUserDefault(serializers.CurrentUserDefault):
         return user.pk
 
 
-class ObservationTypeSerializer(serializers.ModelSerializer):
-    author_id = serializers.HiddenField(
-        default=CurrentUserDefault()
-    )
-    icon = serializers.ImageField(
-        required=False,
-    )
+# class ObservationTypeSerializer(serializers.ModelSerializer):
+#     author_id = serializers.HiddenField(
+#         default=CurrentUserDefault()
+#     )
+#     icon = serializers.ImageField(
+#         required=False,
+#     )
 
-    class Meta:
-        model = ObservationType
-        fields = ('__all__')
+#     class Meta:
+#         model = ObservationType
+#         fields = ('__all__')
